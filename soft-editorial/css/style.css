@@ -202,22 +202,71 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.14}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(16px);background:var(--ink);color:#fff;padding:.9rem 1.4rem;border-radius:12px;font-size:.92rem;font-weight:500;opacity:0;pointer-events:none;transition:.35s;z-index:200;max-width:90%}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* адаптив */
-@media(max-width:920px){
-  .hero__in,.about__in,.slots__in,.book__in{grid-template-columns:1fr;gap:2rem}
-  .about__photo{max-width:360px;margin-inline:auto}
-  .menu{grid-template-columns:1fr}
-  .tl{grid-template-columns:1fr 1fr;gap:1.6rem}
-  .tl::before{display:none}
-  .ft__in{grid-template-columns:1fr}
-  .links{position:fixed;top:62px;left:0;right:0;flex-direction:column;background:var(--card);border-bottom:1px solid var(--line);padding:1.2rem 5%;gap:1rem;transform:translateY(-130%);transition:transform .3s;margin:0}
-  .links.open{transform:translateY(0)}
-  .hb{display:flex}
-  #vkLbl{display:none}
+/* ===== АДАПТИВ ДЛЯ ПЛАНШЕТОВ И ТЕЛЕФОНОВ В АЛЬБОМНОЙ ОРИЕНТАЦИИ ===== */
+@media(max-width:1024px){
+  .hero__in, .about__in, .slots__in, .book__in {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .lead, .sub, .slots__l p, .about__txt p {
+    max-width: 100%;
+  }
+  .about__photo {
+    max-width: 360px;
+    margin-inline: auto;
+  }
+  .menu {
+    grid-template-columns: 1fr;
+  }
+  .tl {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem;
+  }
+  .tl::before {
+    display: none;
+  }
+  .ft__in {
+    grid-template-columns: 1fr;
+  }
+  .links {
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    padding: 1.2rem 5%;
+    gap: 1rem;
+    transform: translateY(-130%);
+    transition: transform .3s;
+    margin: 0;
+    z-index: 50;
+  }
+  .links.open {
+    transform: translateY(0);
+  }
+  .hb {
+    display: flex;
+  }
+  #vkLbl {
+    display: none;
+  }
 }
+
+/* ===== АДАПТИВ ДЛЯ МАЛЕНЬКИХ ТЕЛЕФОНОВ (портретная ориентация) ===== */
 @media(max-width:560px){
-  .frow{grid-template-columns:1fr}
-  .about__grid{grid-template-columns:1fr}
-  .tl{grid-template-columns:1fr}
-  .hero__badge{left:5%;bottom:2%}
+  .frow {
+    grid-template-columns: 1fr;
+  }
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+  .tl {
+    grid-template-columns: 1fr;
+  }
+  .hero__badge {
+    left: 5%;
+    bottom: 2%;
+  }
 }
