@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ольга Шевалдина — студия косметологии, Челябинск</title>
+<meta name="description" content="Студия Ольги Шевалдиной в Челябинске: SMAS-лифтинг, инъекционная и аппаратная косметология, коррекция тела, ЭЛОС-эпиляция. Онлайн-запись и личный кабинет."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar__in">
+    <a href="#top" class="mark"><span class="mark__mono">ОШ</span><span class="mark__word">Шевалдина</span></a>
+    <nav class="links" id="links">
+      <a href="#about">О косметологе</a>
+      <a href="#price">Услуги и цены</a>
+      <a href="#steps">Как проходит визит</a>
+      <a href="#slots">Свободное время</a>
+      <a href="#book">Запись</a>
+    </nav>
+    <div class="bar__act">
+      <button class="ghost" id="vkBtn"><span class="vk">VK</span><span id="vkLbl">Войти через VK</span></button>
+      <button class="ava" id="cabBtn" hidden><span id="avaInit">—</span><i class="pip" id="pip" hidden>0</i></button>
+      <button class="hb" id="hb" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero__in">
+    <div class="hero__l">
+      <p class="kicker">Челябинск · студия косметологии и эстетической медицины</p>
+      <h1>Красота, которая начинается с&nbsp;<em>уверенности</em></h1>
+      <p class="lead">Врач-косметолог, аккредитованный педагог, мастер аппаратной коррекции тела и гирудотерапевт. Индивидуальный протокол под вашу кожу и цели — только сертифицированные препараты и современные методики.</p>
+      <div class="hero__cta">
+        <a href="#book" class="pri">Записаться на приём</a>
+        <a href="#price" class="sec">Прайс-лист</a>
+      </div>
+      <ul class="trust">
+        <li>8+ лет практики</li>
+        <li>Сертифицированные препараты</li>
+        <li>Рассрочка предусмотрена</li>
+      </ul>
+    </div>
+    <div class="hero__r">
+      <svg class="arc" viewBox="0 0 320 360" aria-hidden="true"><path d="M20 300 Q160 -20 300 120" fill="none" stroke="#bd6a4f" stroke-width="1.2" opacity=".45"/><circle cx="300" cy="120" r="3" fill="#bd6a4f"/></svg>
+      <div class="hero__frame">
+        <img src="../img/olga-about.jpg" alt="Ольга Шевалдина" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="ph-fb"><span>ОШ</span></div>
+      </div>
+      <div class="hero__badge"><b>8+</b><span>лет практики</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about__in">
+    <div class="about__photo">
+      <img src="../img/olga-hero.jpg" alt="Ольга Шевалдина" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div class="ph-fb"><span>ОШ</span></div>
+    </div>
+    <div class="about__txt">
+      <p class="kicker">О враче</p>
+      <h2>Шевалдина Ольга Николаевна</h2>
+      <p>Косметолог с медицинским образованием, аккредитованный преподаватель, мастер аппаратной коррекции тела и гирудотерапевт. За годы работы помогла сотням людей вернуть уверенность и сияние — не маскируя, а раскрывая естественную красоту.</p>
+      <p class="emph">«Я не просто провожу процедуры — я помогаю вам чувствовать себя по-настоящему особенными.»</p>
+      <div class="about__grid">
+        <div><b>Индивидуальный подход</b><span>протокол под вашу кожу и цели</span></div>
+        <div><b>Современные методики</b><span>постоянное повышение квалификации</span></div>
+        <div><b>Безопасность</b><span>сертифицированные препараты</span></div>
+        <div><b>Забота</b><span>комфорт на каждом этапе</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="price">
+  <div class="wrap">
+    <div class="head"><p class="kicker">Прайс-лист</p><h2>Услуги и стоимость</h2><p class="sub">Выберите направление или найдите процедуру через поиск. Нажмите «Записаться» в строке — услуга подставится в форму ниже.</p></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="srch"><input id="srch" type="text" placeholder="Поиск: RF-лифтинг, губы, LPG…" autocomplete="off"/></div>
+    <div class="menu" id="menu"></div>
+    <p class="none" id="none" hidden>Ничего не найдено. Измените запрос.</p>
+    <p class="disc">Имеются противопоказания. Необходима консультация специалиста. Цены действительны для демо-версии.</p>
+  </div>
+</section>
+
+<section class="steps" id="steps">
+  <div class="wrap">
+    <div class="head"><p class="kicker">Как проходит визит</p><h2>Четыре спокойных шага</h2></div>
+    <div class="tl">
+      <div class="tl__i"><span class="tl__n">1</span><h3>Консультация</h3><p>Осматриваем кожу, обсуждаем цели и противопоказания, составляем план.</p></div>
+      <div class="tl__i"><span class="tl__n">2</span><h3>Протокол</h3><p>Подбираем процедуры и препараты именно под вашу ситуацию — без шаблонных пакетов.</p></div>
+      <div class="tl__i"><span class="tl__n">3</span><h3>Процедура</h3><p>Провожу в комфортной атмосфере, на сертифицированном оборудовании.</p></div>
+      <div class="tl__i"><span class="tl__n">4</span><h3>Сопровождение</h3><p>Домашний уход, контрольный визит и честный ответ на вопросы после.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slots" id="slots">
+  <div class="wrap slots__in">
+    <div class="slots__l">
+      <p class="kicker">Свободное время</p>
+      <h2>Выберите удобный слот</h2>
+      <p>В демо расписание фиктивное, но интерактивное: выберите день, затем свободное время — дата и час автоматически попадут в форму записи ниже. Серые окна заняты.</p>
+    </div>
+    <div class="slots__r">
+      <div class="dayrow" id="dayRow"></div>
+      <div class="timerow" id="timeRow"></div>
+      <p class="slot-hint" id="slotHint">Слот не выбран</p>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap book__in">
+    <form class="bf" id="bf" novalidate>
+      <h3>Заявка на приём</h3>
+      <div class="frow"><label>Имя<input id="bName" type="text" placeholder="Ваше имя" required/></label><label>Телефон<input id="bPhone" type="tel" placeholder="+7 (___) ___-__-__" required/></label></div>
+      <label>Процедура<select id="bService" required></select></label>
+      <div class="frow"><label>Дата<input id="bDate" type="date" required/></label><label>Время<select id="bTime" required><option value="">—</option><option>10:00</option><option>11:30</option><option>13:00</option><option>14:30</option><option>16:00</option><option>17:30</option><option>19:00</option></select></label></div>
+      <label>Комментарий<textarea id="bNote" rows="2" placeholder="Пожелания, вопросы (необязательно)"></textarea></label>
+      <label class="ag"><input id="bAg" type="checkbox" required/><span>Согласен(на) на обработку персональных данных и ознакомлен(а), что имеются противопоказания, необходима консультация специалиста.</span></label>
+      <button type="submit" class="pri pri--full">Отправить заявку</button>
+      <p class="fn">Демо: заявка сохраняется локально и видна в личном кабинете после входа через VK.</p>
+    </form>
+    <aside class="bside">
+      <p class="kicker">Контакты</p>
+      <a href="tel:+79821038579" class="btel">8 982 103-85-79</a>
+      <p class="bhrs">Челябинск · запись и консультации по телефону.<br/>Пн–Сб · 10:00 – 20:00</p>
+      <div class="bnote"><b>Рассрочка предусмотрена</b><span>на процедуры стоимостью от 10 000 ₽</span></div>
+      <div class="bnote"><b>Первое посещение</b><span>скидка 70% · приведи подружку — кешбэк 600 ₽</span></div>
+    </aside>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap ft__in">
+    <div class="ft__b"><span class="mark__mono">ОШ</span><div><b>Студия Ольги Шевалдиной</b><small>ИП Шевалдина Ольга Николаевна · Челябинск</small></div></div>
+    <nav class="ft__n"><a href="#about">О враче</a><a href="#price">Услуги</a><a href="#steps">Визит</a><a href="#slots">Расписание</a><a href="#book">Запись</a><a href="#" id="cabLink">Личный кабинет</a></nav>
+    <div class="ft__c"><a href="tel:+79821038579">8 982 103-85-79</a><a href="https://vk.com/" target="_blank" rel="noopener">ВКонтакте</a></div>
+  </div>
+  <div class="wrap ft__lg">Информация на сайте не является публичной офертой. Имеются противопоказания, необходима консультация специалиста. · © <span id="yr"></span> Beauty · Health · Confidence</div>
+</footer>
+
+<div class="mo" id="vkMo" hidden><div class="mo__b mo__b--vk">
+  <div class="vk-h"><span class="vk vk--b">VK</span> ВКонтакте</div>
+  <p class="vk-t">Разрешить «Студия Ольги Шевалдиной» доступ к профилю?</p>
+  <div class="vk-p">✓ Имя и фото профиля<br/>✓ Телефон для связи по записям<br/>✓ История ваших приёмов</div>
+  <div class="mo__a"><button class="gh" data-x>Отмена</button><button class="pri" id="vkOk">Разрешить</button></div>
+  <p class="vk-n">Демо. Реальный VK ID подключается на боевой версии через приложение VK для разработчиков + домен + HTTPS.</p>
+</div></div>
+
+<div class="mo" id="cabMo" hidden><div class="mo__b mo__b--w">
+  <div class="mo__h"><h3>Личный кабинет</h3><button class="x" data-x aria-label="Закрыть">✕</button></div>
+  <div id="cabB" class="cab"></div>
+</div></div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="../services.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

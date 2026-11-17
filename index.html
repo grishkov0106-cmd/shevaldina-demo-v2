@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Студия Ольги Шевалдиной — выбор концепции</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Golos Text",system-ui,sans-serif;background:#f7f2ea;color:#2a241f;min-height:100vh;display:flex;flex-direction:column}
+  .wrap{width:min(1100px,92%);margin:auto;padding:clamp(2rem,6vw,5rem) 0}
+  header{text-align:center;margin-bottom:clamp(2rem,5vw,3.5rem)}
+  header .kicker{font-family:"Cormorant Garamond",serif;font-size:1.05rem;letter-spacing:.4em;text-transform:uppercase;color:#bd6a4f}
+  header h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(2rem,5vw,3.2rem);margin:.6rem 0 .8rem}
+  header p{color:#6f6357;max-width:56ch;margin:0 auto;font-size:1rem}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  a.card{display:block;text-decoration:none;color:inherit;border:1px solid rgba(189,106,79,.25);background:#fff;padding:2rem 1.8rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s;border-radius:16px}
+  a.card:hover{border-color:#bd6a4f;transform:translateY(-3px);box-shadow:0 18px 40px rgba(120,80,60,.14)}
+  a.card .tag{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:#bd6a4f;font-weight:600}
+  a.card h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:2rem;margin:.5rem 0 .8rem}
+  a.card p{color:#6f6357;font-size:.95rem;line-height:1.6;margin-bottom:1.2rem}
+  a.card .feat{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.82rem;color:#4a4038}
+  a.card .feat li{padding-left:1rem;position:relative}
+  a.card .feat li::before{content:"·";position:absolute;left:.2rem;color:#bd6a4f;font-weight:700}
+  a.card.dark{background:#0c0c0e;color:#ece7df;border-color:#2a2a2e}
+  a.card.dark:hover{border-color:#c9a86a}
+  a.card.dark .tag{color:#c9a86a}
+  a.card.dark p{color:#9a938a}
+  a.card.dark .feat li{color:#cfc8bd}
+  a.card.dark .feat li::before{color:#c9a86a}
+  .swatch{display:flex;gap:.4rem;margin-top:1.4rem}
+  .swatch i{width:22px;height:22px;border-radius:50%;display:block;border:1px solid rgba(0,0,0,.08)}
+  .dark .swatch i{border-color:rgba(255,255,255,.15)}
+  footer{text-align:center;color:#8a7d6f;font-size:.82rem;padding:2rem 0;border-top:1px solid rgba(189,106,79,.18);margin-top:3rem}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Демо · две концепции</div>
+    <h1>Студия Ольги Шевалдиной</h1>
+    <p>Два самостоятельных сайта с разной философией, типографикой и подачей прайса. Это не «смена цвета», а два разных продукта. Откройте каждый и сравните.</p>
+  </header>
+
+  <div class="grid">
+    <a class="card dark" href="dark-luxury/index.html">
+      <span class="tag">Концепция 01</span>
+      <h2>Чёрный бархат</h2>
+      <p>Сдержанная роскошь. Матовый чёрный, тонкие золотые линии, прайс как меню ресторана — строками с лидерами, без карточек и иконок. Запись через личную консультацию и телефон (без соцсетей — намеренно, так дороже).</p>
+      <ul class="feat">
+        <li>Editorial-типографика</li><li>Прайс-меню</li><li>Full-bleed фото</li><li>Без VK-кнопки</li>
+      </ul>
+      <div class="swatch"><i style="background:#0c0c0e"></i><i style="background:#c9a86a"></i><i style="background:#ece7df"></i></div>
+    </a>
+
+    <a class="card" href="soft-editorial/index.html">
+      <span class="tag">Концепция 02</span>
+      <h2>Пудра и графит</h2>
+      <p>Тёплый журнальный премиум. Кремовый фон, терракотовый акцент, мягкие формы, фото-обложка, прайс в «меню-карточках», таймлайн визита. Здесь есть вход через VK, личный кабинет и выбор слота — как в изначальном ТЗ.</p>
+      <ul class="feat">
+        <li>Soft editorial</li><li>Меню-карточки прайса</li><li>Таймлайн визита</li><li>VK + кабинет + слоты</li>
+      </ul>
+      <div class="swatch"><i style="background:#f7f2ea"></i><i style="background:#bd6a4f"></i><i style="background:#2a241f"></i></div>
+    </a>
+  </div>
+
+  <footer>Демо-версия · заявки сохраняются локально в браузере · реальные авторизация VK и база данных — на боевом этапе</footer>
+</div>
+</body>
+</html>
