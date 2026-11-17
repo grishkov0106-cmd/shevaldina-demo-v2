@@ -149,6 +149,11 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08}
 }
 @media(max-width:560px){
   .cform__row{grid-template-columns:1fr}
-  .pl-row__book{display:none}
   .hero h1{font-size:2.8rem}
+  /* Кнопка «Записаться» теперь видна на телефоне */
+  .pl-row{flex-wrap:wrap;align-items:center;gap:.3rem .6rem;padding:.8rem 0}
+  .pl-row__name{width:100%;margin-bottom:.2rem}
+  .pl-row__dots{display:none}
+  .pl-row__price{font-size:1.2rem}
+  .pl-row__book{margin-left:0;padding:.45rem .9rem;font-size:.75rem}
 }
