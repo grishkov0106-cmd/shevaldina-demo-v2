@@ -1,149 +1,159 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ольга Шевалдина — студия аппаратной косметологии</title>
-<meta name="description" content="SMAS-лифтинг, инъекционные и аппаратные процедуры, ЭЛОС-эпиляция. Индивидуальный подход. Запись по телефону."/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css"/>
-</head>
-<body>
+/* ===== DARK LUXURY · «Чёрный бархат» ===== */
+:root{
+  --bg:#0c0c0e; --bg2:#101013; --ink:#ece7df; --muted:#9a938a; --dim:#6f6a62;
+  --gold:#c9a86a; --gold-d:#b8945a; --hair:rgba(201,168,106,.22); --hair2:rgba(236,231,223,.08);
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{width:min(1180px,90%);margin-inline:auto}
+.container-side{width:min(1180px,90%);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08}
+.overline{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:1rem}
 
-<header class="topbar">
-  <div class="container topbar__in">
-    <a href="#top" class="logo"><span class="logo__mono">ОШ</span><span class="logo__word">Shevaldina</span></a>
-    <nav class="menu" id="menu">
-      <a href="#studio">Студия</a>
-      <a href="#price">Прайс</a>
-      <a href="#approach">Подход</a>
-      <a href="#contact">Запись</a>
-    </nav>
-    <a href="tel:+79821038579" class="phone-link">8 982 103-85-79</a>
-    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
-  </div>
-</header>
+.btn{display:inline-block;padding:.85rem 1.7rem;font-family:var(--sans);font-weight:400;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--gold);background:transparent;color:var(--gold);cursor:pointer;transition:.35s}
+.btn--gold:hover{background:var(--gold);color:#0c0c0e}
+.btn--line{border-color:var(--hair2);color:var(--ink)}
+.btn--line:hover{border-color:var(--gold);color:var(--gold)}
+.btn--full{width:100%;text-align:center}
 
-<section class="hero" id="top">
-  <div class="hero__grid">
-    <div class="hero__text container-side">
-      <p class="overline">Est. более 8 лет · Челябинск</p>
-      <h1>Ольга<br/><em>Шевалдина</em></h1>
-      <p class="hero__role">Врач-косметолог · аккредитованный педагог · мастер аппаратной коррекции тела · гирудотерапевт</p>
-      <p class="hero__lead">Не процедуры ради процедур, а возвращение вам уверенности. Современные методики, сертифицированные препараты, внимание к каждой детали вашего лица и тела.</p>
-      <div class="hero__actions">
-        <a href="#price" class="btn btn--gold">Смотреть прайс</a>
-        <a href="#contact" class="btn btn--line">Записаться на консультацию</a>
-      </div>
-      <p class="hero__fine">Рассрочка предусмотрена · Имеются противопоказания, необходима консультация</p>
-    </div>
-    <div class="hero__photo">
-      <img src="../img/olga-hero.jpg" alt="Ольга Шевалдина" onerror="this.style.display='none';document.querySelector('.hero__ph-fb').style.display='flex'"/>
-      <div class="hero__ph-fb"><span>ОШ</span></div>
-      <div class="hero__caption">Твоя красота —<br/>моё вдохновение</div>
-    </div>
-  </div>
-</section>
+.topbar{position:sticky;top:0;z-index:40;background:rgba(12,12,14,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--hair2)}
+.topbar__in{display:flex;align-items:center;gap:1.5rem;padding:.9rem 0}
+.logo{display:flex;align-items:center;gap:.7rem}
+.logo__mono{font-family:var(--serif);font-size:1.1rem;color:var(--gold);border:1px solid var(--gold);width:38px;height:38px;display:flex;align-items:center;justify-content:center}
+.logo__word{font-family:var(--serif);font-size:1.3rem;letter-spacing:.04em}
+.menu{margin-left:auto;display:flex;gap:2rem}
+.menu a{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.menu a:hover{color:var(--ink)}
+.phone-link{font-size:.82rem;letter-spacing:.08em;color:var(--gold);border-bottom:1px solid transparent;transition:border-color .3s}
+.phone-link:hover{border-color:var(--gold)}
+.burger{display:none;flex-direction:column;gap:5px;width:40px;height:40px;background:none;border:1px solid var(--hair2);cursor:pointer;align-items:center;justify-content:center}
+.burger span{width:16px;height:1px;background:var(--ink)}
 
-<section class="studio" id="studio">
-  <div class="container studio__grid">
-    <div class="studio__quote">
-      <p>«За годы работы я помогла сотням людей раскрыть естественную красоту, вернуть уверенность и сияние. Я не просто провожу процедуры — я помогаю вам чувствовать себя по-настоящему особенными.»</p>
-      <span class="sign">— Ольга Шевалдина</span>
-    </div>
-    <div class="studio__facts">
-      <div class="fact"><b>8+</b><span>лет практики</span></div>
-      <div class="fact"><b>100%</b><span>сертифицированные препараты</span></div>
-      <div class="fact"><b>2/1</b><span>индивидуальных протокола на клиента</span></div>
-    </div>
-  </div>
-</section>
+.hero{padding:clamp(2rem,5vw,4rem) 0 0}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:78vh}
+.hero__text{display:flex;flex-direction:column;justify-content:center;padding:3rem clamp(1rem,4vw,3rem) 3rem max(4vw,calc((100vw - 1180px)/2 + 5%))}
+.hero h1{font-size:clamp(3rem,7vw,5.4rem);margin-bottom:1.2rem}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero__role{color:var(--gold);font-size:.92rem;letter-spacing:.04em;margin-bottom:1.2rem;max-width:42ch}
+.hero__lead{color:var(--muted);max-width:46ch;margin-bottom:2rem}
+.hero__actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.hero__fine{font-size:.74rem;color:var(--dim);letter-spacing:.04em}
+.hero__photo{position:relative;overflow:hidden;background:var(--bg2);border-left:1px solid var(--hair)}
+.hero__photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.hero__ph-fb{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:linear-gradient(160deg,#1a1a1d,#0c0c0e)}
+.hero__ph-fb span{font-family:var(--serif);font-size:6rem;color:var(--gold);opacity:.5}
+.hero__caption{position:absolute;left:1.6rem;bottom:1.6rem;font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--ink);line-height:1.2;text-shadow:0 2px 20px rgba(0,0,0,.6)}
 
-<section class="price" id="price">
-  <div class="container">
-    <div class="sec-head">
-      <p class="overline">Прайс-лист</p>
-      <h2>Услуги и стоимость</h2>
-      <p class="sec-sub">Выберите направление. Стоимость указана за процедуру; при курсах и комплексах действуют специальные условия.</p>
-    </div>
+.studio{padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--hair2)}
+.studio__grid{display:grid;grid-template-columns:1.3fr .9fr;gap:3rem;align-items:center}
+.studio__quote p{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.4;font-style:italic;color:var(--ink)}
+.studio__quote .sign{display:block;margin-top:1.4rem;color:var(--gold);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;font-style:normal}
+.studio__facts{display:grid;gap:1.4rem;border-left:1px solid var(--hair);padding-left:2rem}
+.fact b{display:block;font-family:var(--serif);font-size:2.4rem;color:var(--gold);font-weight:500}
+.fact span{color:var(--muted);font-size:.85rem}
 
-    <div class="filters" id="filters"></div>
-    <div class="find">
-      <input type="text" id="find" placeholder="Найти процедуру — например, RF-лифтинг" autocomplete="off"/>
-    </div>
+.price{padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--hair2)}
+.sec-head{text-align:center;margin-bottom:2.4rem}
+.sec-head h2{font-size:clamp(2rem,4vw,3rem)}
+.sec-sub{color:var(--muted);max-width:56ch;margin:1rem auto 0;font-size:.92rem}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem .6rem;justify-content:center;margin-bottom:1.4rem}
+.filt{padding:.5rem 1.1rem;border:1px solid var(--hair2);background:none;color:var(--muted);font-family:var(--sans);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.3s}
+.filt:hover{border-color:var(--gold);color:var(--ink)}
+.filt.on{border-color:var(--gold);color:#0c0c0e;background:var(--gold)}
+.find{max-width:440px;margin:0 auto 2.4rem}
+.find input{width:100%;background:none;border:none;border-bottom:1px solid var(--hair);color:var(--ink);font-family:var(--serif);font-size:1.2rem;padding:.6rem .2rem;text-align:center}
+.find input:focus{outline:none;border-color:var(--gold)}
+.find input::placeholder{color:var(--dim);font-style:italic}
 
-    <div class="pricelist" id="pricelist"></div>
-    <p class="none" id="none" hidden>По вашему запросу ничего не найдено.</p>
+.pricelist{display:grid;gap:0}
+.pl-group{margin-bottom:2.8rem}
+.pl-group__title{font-family:var(--serif);font-size:1.65rem;color:var(--gold);text-align:center;margin-bottom:1.3rem;position:relative}
+.pl-group__title::after{content:"";display:block;width:40px;height:1px;background:var(--hair);margin:.7rem auto 0}
+.pl-row{display:flex;align-items:baseline;gap:.7rem;padding:.95rem 0;border-bottom:1px solid var(--hair2);transition:background .25s}
+.pl-row:hover{background:rgba(201,168,106,.04)}
+.pl-row__name{font-size:1.18rem;color:var(--ink);line-height:1.4}
+.pl-row__name small{display:block;color:var(--dim);font-size:.82rem;letter-spacing:.04em;margin-top:.2rem}
+.pl-row__dots{flex:1;border-bottom:1px dotted var(--hair);transform:translateY(-5px)}
+.pl-row__price{font-family:var(--serif);font-size:1.4rem;color:var(--gold);white-space:nowrap}
+.pl-row__price u{text-decoration:none;font-size:.78rem;color:var(--muted);font-family:var(--sans);display:block;text-align:right}
+.pl-row__book{margin-left:1rem;border:1px solid var(--hair2);background:none;color:var(--muted);font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .85rem;cursor:pointer;transition:.3s;white-space:nowrap}
+.pl-row__book:hover{border-color:var(--gold);color:var(--gold)}
+.none{text-align:center;color:var(--muted);padding:2rem;font-style:italic;font-family:var(--serif);font-size:1.2rem}
+.price-foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:1rem;padding-top:1.4rem;border-top:1px solid var(--hair);color:var(--dim);font-size:.76rem;letter-spacing:.06em}
 
-    <div class="price-foot">
-      <span>Цены в рублях · ИП Шевалдина Ольга Николаевна · Челябинск</span>
-      <span>Информация не является публичной офертой</span>
-    </div>
-  </div>
-</section>
+.approach{padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--hair2)}
+.approach__grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem}
+.approach__head h2{font-size:clamp(2rem,4vw,3rem)}
+.approach__list{list-style:none;display:grid;gap:0}
+.approach__list li{display:flex;gap:1.6rem;padding:1.6rem 0;border-top:1px solid var(--hair2)}
+.approach__list li:last-child{border-bottom:1px solid var(--hair2)}
+.approach__list span{font-family:var(--serif);font-size:1.4rem;color:var(--gold);min-width:2.4rem}
+.approach__list h3{font-size:1.3rem;margin-bottom:.4rem}
+.approach__list p{color:var(--muted);font-size:.92rem;max-width:52ch}
 
-<section class="approach" id="approach">
-  <div class="container approach__grid">
-    <div class="approach__head">
-      <p class="overline">Подход</p>
-      <h2>Почему выбирают именно меня</h2>
-    </div>
-    <ul class="approach__list">
-      <li><span>01</span><div><h3>Индивидуальный протокол</h3><p>Программа подбирается под вашу кожу, цели и особенности — без шаблонных «пакетов».</p></div></li>
-      <li><span>02</span><div><h3>Современные методики</h3><p>Аккредитованный преподаватель: постоянно повышаю квалификацию, работаю на актуальном оборудовании.</p></div></li>
-      <li><span>03</span><div><h3>Безопасность и качество</h3><p>Только сертифицированные препараты. Честно предупреждаю о противопоказаниях до процедуры.</p></div></li>
-      <li><span>04</span><div><h3>Забота о комфорте</h3><p>Атмосфера студии, внимательное отношение и сопровождение на каждом этапе — от консультации до результата.</p></div></li>
-    </ul>
-  </div>
-</section>
+.promo{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:var(--bg2)}
+.promo__in{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.promo__in>div{padding:2.2rem 1.6rem;text-align:center;border-right:1px solid var(--hair2)}
+.promo__in>div:last-child{border-right:none}
+.promo__in .overline{margin-bottom:.6rem}
+.promo__in h3{font-size:1.3rem;color:var(--ink)}
 
-<section class="promo">
-  <div class="container promo__in">
-    <div><p class="overline">Акции</p><h3>Первое посещение — скидка 70%</h3></div>
-    <div><p class="overline">Рекомендация</p><h3>Приведи подружку — кешбэк 600 ₽</h3></div>
-    <div><p class="overline">Оплата</p><h3>Рассрочка предусмотрена</h3></div>
-  </div>
-</section>
+.contact{padding:clamp(3rem,7vw,6rem) 0}
+.contact__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:start}
+.contact__info h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem}
+.contact__info p{color:var(--muted);margin-bottom:1.4rem;max-width:40ch}
+.contact__tel{display:inline-block;font-family:var(--serif);font-size:2rem;color:var(--gold);border-bottom:1px solid var(--hair);padding-bottom:.3rem;margin-bottom:.6rem}
+.contact__hours{color:var(--dim);font-size:.85rem;letter-spacing:.1em}
+.cform{display:grid;gap:1.2rem;background:var(--bg2);border:1px solid var(--hair2);padding:clamp(1.6rem,3vw,2.4rem)}
+.cform label{display:grid;gap:.4rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cform input,.cform select,.cform textarea{background:none;border:none;border-bottom:1px solid var(--hair);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:1rem;padding:.5rem .1rem;width:100%}
+.cform select{cursor:pointer}
+.cform select option{background:var(--bg2);color:var(--ink)}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:none;border-color:var(--gold)}
+.cform input::placeholder,.cform textarea::placeholder{color:var(--dim)}
+.cform__row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.agree{display:flex!important;flex-direction:row!important;align-items:flex-start;gap:.7rem;font-size:.74rem!important;letter-spacing:.02em!important;text-transform:none!important;color:var(--muted)!important;line-height:1.5}
+.agree input{width:auto;flex-shrink:0;margin-top:.2rem;accent-color:var(--gold)}
+.cform__note{font-size:.72rem;color:var(--dim);text-align:center}
 
-<section class="contact" id="contact">
-  <div class="container contact__grid">
-    <div class="contact__info">
-      <p class="overline">Запись</p>
-      <h2>Оставьте заявку</h2>
-      <p>Я свяжусь с вами в течение рабочего дня, уточню детали и подберу удобное время. Экспресс-запись — по телефону.</p>
-      <a href="tel:+79821038579" class="contact__tel">8 982 103-85-79</a>
-      <p class="contact__hours">Челябинск · Пн–Сб · 10:00 – 20:00</p>
-    </div>
-    <form class="cform" id="cform" novalidate>
-      <label>Имя<input type="text" id="cName" placeholder="Как к вам обращаться" required/></label>
-      <label>Телефон<input type="tel" id="cPhone" placeholder="+7 (___) ___-__-__" required/></label>
-      <label>Процедура<select id="cService" required></select></label>
-      <div class="cform__row">
-        <label>Дата<input type="date" id="cDate" required/></label>
-        <label>Время<select id="cTime" required><option value="">—</option><option>10:00</option><option>11:30</option><option>13:00</option><option>14:30</option><option>16:00</option><option>17:30</option><option>19:00</option></select></label>
-      </div>
-      <label>Комментарий<textarea id="cNote" rows="2" placeholder="Пожелания, вопросы (необязательно)"></textarea></label>
-      <label class="agree"><input type="checkbox" id="cAgree" required/><span>Согласен(на) на обработку персональных данных и ознакомлен(а), что имеются противопоказания, необходима консультация специалиста.</span></label>
-      <button type="submit" class="btn btn--gold btn--full">Отправить заявку</button>
-      <p class="cform__note">Демо: заявка сохраняется локально в вашем браузере.</p>
-    </form>
-  </div>
-</section>
+.foot{border-top:1px solid var(--hair);padding:3rem 0 1.5rem;background:var(--bg2)}
+.foot__in{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+.foot__brand{display:flex;gap:.8rem;align-items:center}
+.foot__brand b{font-family:var(--serif);font-size:1.2rem;display:block}
+.foot__brand small{color:var(--dim);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
+.foot__col h4{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-weight:400}
+.foot__col a,.foot__col p{display:block;color:var(--muted);font-size:.9rem;margin-bottom:.5rem;transition:color .3s}
+.foot__col a:hover{color:var(--ink)}
+.foot__legal{margin-top:2.4rem;padding-top:1.4rem;border-top:1px solid var(--hair2);color:var(--dim);font-size:.74rem;text-align:center;letter-spacing:.04em}
 
-<footer class="foot">
-  <div class="container foot__in">
-    <div class="foot__brand"><span class="logo__mono">ОШ</span><div><b>Студия Ольги Шевалдиной</b><small>Beauty · Health · Confidence · Челябинск</small></div></div>
-    <div class="foot__col"><h4>Навигация</h4><a href="#studio">Студия</a><a href="#price">Прайс</a><a href="#approach">Подход</a><a href="#contact">Запись</a></div>
-    <div class="foot__col"><h4>Контакты</h4><a href="tel:+79821038579">8 982 103-85-79</a><a href="https://vk.com/" target="_blank" rel="noopener">Сообщество ВКонтакте</a><p>Челябинск · Пн–Сб 10:00–20:00</p></div>
-  </div>
-  <div class="container foot__legal">ИП Шевалдина Ольга Николаевна · г. Челябинск · Сайт носит информационный характер и не является публичной офертой · Имеются противопоказания, необходима консультация специалиста · © <span id="yr"></span></div>
-</footer>
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--bg2);border:1px solid var(--gold);color:var(--ink);padding:1rem 1.6rem;font-size:.9rem;letter-spacing:.04em;opacity:0;pointer-events:none;transition:.4s;z-index:90;max-width:90%}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-<div class="toast" id="toast" hidden></div>
-
-<script src="../services.js"></script>
-<script src="js/app.js"></script>
-</body>
-</html>
+@media(max-width:980px){
+  .hero__grid{grid-template-columns:1fr;min-height:auto}
+  .hero__photo{height:60vh;border-left:none;border-top:1px solid var(--hair)}
+  .hero__text{padding:2.5rem 5%}
+  .studio__grid,.approach__grid,.contact__grid{grid-template-columns:1fr;gap:2rem}
+  .studio__facts{border-left:none;padding-left:0;border-top:1px solid var(--hair);padding-top:1.4rem}
+  .promo__in{grid-template-columns:1fr}
+  .promo__in>div{border-right:none;border-bottom:1px solid var(--hair2)}
+  .foot__in{grid-template-columns:1fr}
+  .menu{position:fixed;top:60px;left:0;right:0;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--hair);padding:1.4rem 5%;gap:1.2rem;transform:translateY(-130%);transition:transform .35s;margin:0}
+  .menu.open{transform:translateY(0)}
+  .burger{display:flex}
+  .phone-link{display:none}
+}
+@media(max-width:560px){
+  .cform__row{grid-template-columns:1fr}
+  .hero h1{font-size:2.8rem}
+  /* Кнопка «Записаться» теперь видна на телефоне */
+  .pl-row{flex-wrap:wrap;align-items:center;gap:.3rem .6rem;padding:.8rem 0}
+  .pl-row__name{width:100%;margin-bottom:.2rem}
+  .pl-row__dots{display:none}
+  .pl-row__price{font-size:1.2rem}
+  .pl-row__book{margin-left:0;padding:.45rem .9rem;font-size:.75rem}
+}
