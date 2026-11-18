@@ -49,14 +49,14 @@ function renderPriceList() {
     groupEl.className = 'pl-group';
     groupEl.dataset.category = cat.id;
 
-    // Заголовок группы + Бейдж городов
-    const uniqueCities = [...new Set(servicesInCat.flatMap(s => s.cities))]
+    // Заголовок группы + Общий список городов для категории
+    const uniqueCitiesForCat = [...new Set(servicesInCat.flatMap(s => s.cities))]
       .map(c => c === "all" ? "Все города" : (window.CITY_NAMES[c] || c))
       .join(", ");
 
     const titleEl = document.createElement('h3');
     titleEl.className = 'pl-group__title';
-    titleEl.innerHTML = `${cat.label} <span class="city-badges">(${uniqueCities})</span>`;
+    titleEl.innerHTML = `${cat.label} <span class="city-badges">(${uniqueCitiesForCat})</span>`;
     groupEl.appendChild(titleEl);
 
     // Строки услуг
@@ -67,13 +67,29 @@ function renderPriceList() {
       let priceText = service.price;
       if (service.unit) priceText += ` <u>${service.unit}</u>`;
       
+      // Формируем строку городов для конкретной услуги
+      let citiesHtml = '';
+      if (service.cities && service.cities.length > 0) {
+        const cityNames = service.cities.map(c => 
+          c === "all" ? "Все города" : (window.CITY_NAMES[c] || c)
+        ).join(", ");
+        
+        // Если услуга доступна везде, можно сократить до "Все города", 
+        // или оставить как есть. Оставим детально для ясности.
+        citiesHtml = `<small class="service-cities">${cityNames}</small>`;
+      }
+
       let noteHtml = '';
       if (service.note) {
-        noteHtml = `<small>${service.note}</small>`;
+        noteHtml = `<small class="service-note">${service.note}</small>`;
       }
 
       row.innerHTML = `
-        <div class="pl-row__name">${service.name}${noteHtml}</div>
+        <div class="pl-row__name">
+          ${service.name}
+          ${citiesHtml}
+          ${noteHtml}
+        </div>
         <div class="pl-row__dots"></div>
         <div class="pl-row__price">${priceText}</div>
         <button type="button" class="pl-row__book" data-service="${service.cat}|${service.name}" data-price="${service.price}">Записаться</button>
@@ -104,7 +120,6 @@ function renderPriceList() {
           
           // Если услуга доступна не везде, подсказываем город
           if (fullService.cities.includes("all")) {
-             // Можно оставить выбор за пользователем или выбрать первый попавшийся локальный
              citySelect.value = ""; 
           } else if (fullService.cities.length > 0) {
              citySelect.value = fullService.cities[0];
@@ -180,6 +195,8 @@ function applyFilter(categoryId, searchTerm) {
 
     group.querySelectorAll('.pl-row').forEach(row => {
       const nameEl = row.querySelector('.pl-row__name');
+      // Ищем текст только в названии услуги, игнорируя города/примечания если нужно, 
+      // но лучше искать во всем блоке имени
       const textContent = nameEl ? nameEl.textContent.toLowerCase() : '';
       
       const matchesSearch = !term || textContent.includes(term);
