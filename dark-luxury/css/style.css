@@ -358,7 +358,29 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--in
   font-weight: 400;
   text-transform: none; /* Отменяем uppercase родителя, если нужно */
 }
+/* ... предыдущие стили ... */
 
+/* Стили для подписей городов под конкретными услугами */
+.service-cities {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--dim); /* Серый цвет */
+  margin-top: 0.2rem;
+  letter-spacing: 0.02em;
+  font-family: var(--sans);
+  opacity: 0.8;
+}
+
+/* Стили для примечаний (если они тоже идут мелким текстом) */
+.service-note {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+/* ... остальные стили и media queries ... */
 /* ... остальные стили и media queries ... */
 @media(max-width:560px){
   .cform__row{grid-template-columns:1fr}
