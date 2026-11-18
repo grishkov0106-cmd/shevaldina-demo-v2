@@ -344,7 +344,22 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--in
     font-size: 3rem;
   }
 }
+/* ... предыдущие стили ... */
 
+/* НОВЫЕ СТИЛИ ДЛЯ БЕЙДЖЕЙ ГОРОДОВ В ПРАЙСЕ */
+.city-badges {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--sans);
+  margin-top: 0.4rem;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  font-weight: 400;
+  text-transform: none; /* Отменяем uppercase родителя, если нужно */
+}
+
+/* ... остальные стили и media queries ... */
 @media(max-width:560px){
   .cform__row{grid-template-columns:1fr}
   .pl-row{flex-wrap:wrap;align-items:center;gap:.5rem;padding:1rem 0}
