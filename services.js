@@ -1,5 +1,5 @@
 // Единый источник данных для сайта Ольги Шевалдиной
-// Все цены и названия актуальны на текущий момент
+// Актуальные цены и услуги
 
 window.SERVICES = [
   // ===== SMAS-ЛИФТИНГ =====
@@ -113,9 +113,9 @@ window.SERVICES = [
   {cat:"elos", catName:"ЭЛОС-эпиляция", name:"Комплекс: подмышки + бикини + руки + ноги полностью", price:"4 100", note:"комплекс"},
 
   // ===== АППАРАТНЫЕ ДЛЯ ТЕЛА =====
-  {cat:"body-device", catName:"Аппаратные для тела", name:"LPG-массаж", price:"1 000", unit:"1 сеанс"},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"LPG-массаж (курс)", price:"8 500", unit:"10 сеансов"},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Костюм для LPG", price:"500", unit:"аренда"},
+  {cat:"body-device", catName:"Аппаратные для тела", name:"LPG-массаж", price:"1 000", unit:"1 сеанс", note:"Доступно в г. Коркино"},
+  {cat:"body-device", catName:"Аппаратные для тела", name:"LPG-массаж (курс)", price:"8 500", unit:"10 сеансов", note:"Доступно в г. Коркино"},
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Костюм для LPG", price:"500", unit:"аренда", note:"Доступно в г. Коркино"},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Indiba (жиротоп 2/1)", price:"2 000", unit:"1 сеанс"},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Indiba (жиротоп 2/1, курс)", price:"7 500", unit:"5 сеансов"},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Вибрационный массаж тела", price:"1 000", unit:"1 сеанс"},
@@ -130,7 +130,7 @@ window.SERVICES = [
   {cat:"body-device", catName:"Аппаратные для тела", name:"RF-лифтинг (зона)", price:"1 500", unit:"1 сеанс"},
   {cat:"body-device", catName:"Аппаратные для тела", name:"RF-лифтинг (зона, курс)", price:"5 000", unit:"5 сеансов"},
   {cat:"body-device", catName:"Аппаратные для тела", name:"EMS-тренировка", price:"1 500", unit:"1 зона"},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент: 5 EMS", price:"5 000", note:"абонемент"},
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент: 5 EMS", price:"7 500", note:"абонемент"}, // ИСПРАВЛЕНО
   {cat:"body-device", catName:"Аппаратные для тела", name:"Комплекс: 10 LPG + 10 EMS", price:"17 000", note:"абонемент"},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Комплекс: 10 LPG + 5 Indiba 2/1", price:"16 000", note:"абонемент"},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Комплекс: 10 LPG + 5 EMS", price:"13 500", note:"абонемент"},
