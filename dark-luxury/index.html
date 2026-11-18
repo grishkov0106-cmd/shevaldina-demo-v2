@@ -66,6 +66,7 @@
     border: 1px solid var(--hair2);
     padding: 2rem;
     border-radius: var(--radius, 18px);
+    transition: transform 0.3s ease;
   }
   .review-text {
     font-family: var(--serif);
@@ -148,6 +149,32 @@
     margin-top: 0.5rem;
     border-radius: 4px;
   }
+
+  /* Стили для формы отзывов */
+  .review-form-wrapper {
+    margin-top: 3rem; 
+    max-width: 600px; 
+    margin-inline: auto;
+  }
+  .review-form-wrapper input, 
+  .review-form-wrapper textarea {
+    background: var(--bg2); 
+    border-radius: 8px; 
+    padding: 0.8rem; 
+    border: 1px solid var(--hair2);
+    width: 100%;
+    color: var(--ink);
+    font-family: var(--sans);
+  }
+  .review-form-wrapper label {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .review-form-wrapper label:first-child { margin-top: 0; }
 </style>
 </head>
 <body>
@@ -292,7 +319,9 @@
       <p class="overline">Отзывы</p>
       <h2>Что говорят клиенты</h2>
     </div>
-    <div class="reviews-slider">
+    
+    <!-- Слайдер существующих отзывов -->
+    <div class="reviews-slider" id="reviewsList">
       <div class="review-card">
         <p class="review-text">«Ольга — волшебница! После курса LPG и Indiba ушли объемы, кожа подтянулась. Очень внимательный подход, всегда объясняет, что делает и зачем.»</p>
         <div class="review-author">— Анна К., Челябинск</div>
@@ -305,6 +334,26 @@
         <p class="review-text">«Делала липоредукцию подбородка. Результат превзошел ожидания! Теперь только к Ольге, рекомендую всем подругам.»</p>
         <div class="review-author">— Елена В., Тюмень</div>
       </div>
+    </div>
+
+    <!-- Форма добавления нового отзыва -->
+    <div class="review-form-wrapper">
+      <h3 style="font-family: var(--serif); color: var(--gold); text-align: center; margin-bottom: 1.5rem; font-size: 1.4rem;">Оставить отзыв</h3>
+      <form id="reviewForm" class="cform" style="background: transparent; border: none; padding: 0;">
+        <label>Ваше имя
+          <input type="text" id="rName" placeholder="Как вас зовут" required/>
+        </label>
+        <label>Город
+          <input type="text" id="rCity" placeholder="Например: Челябинск" required/>
+        </label>
+        <label>Ваш отзыв
+          <textarea id="rText" rows="4" placeholder="Расскажите о вашем опыте..." required></textarea>
+        </label>
+        <button type="submit" class="btn btn--gold btn--full" style="margin-top: 1.5rem;">Опубликовать отзыв</button>
+        <p style="font-size: 0.75rem; color: var(--dim); text-align: center; margin-top: 0.8rem;">
+          Демо: отзыв появится сразу, но сохранится только в вашем браузере. На боевом сайте отзывы проходят модерацию.
+        </p>
+      </form>
     </div>
   </div>
 </section>
@@ -395,8 +444,9 @@
 
 <script src="../services.js"></script>
 <script src="js/app.js"></script>
+
+<!-- СКРИПТ ДЛЯ ФОРМЫ ЗАПИСИ (ГОРОДА + СЛОТЫ) -->
 <script>
-  // СПЕЦИАЛЬНЫЙ СКРИПТ ДЛЯ ДЕМО-ФОРМЫ С ГОРОДАМИ И СЛОТАМИ
   (function(){
     const TIMES = ["10:00","11:30","13:00","14:30","16:00","17:30","19:00"];
     const slotsGrid = document.getElementById('slotsGrid');
@@ -450,7 +500,7 @@
     // Рендер при загрузке
     renderSlots(dateInput.value);
 
-    // Обработка отправки формы
+    // Обработка отправки формы записи
     document.getElementById('cform').addEventListener('submit', function(e){
       e.preventDefault();
       const city = document.getElementById('cCity').value;
@@ -459,7 +509,6 @@
       if(!city) return alert('Пожалуйста, выберите город приема');
       if(!time) return alert('Пожалуйста, выберите время из сетки слотов');
       
-      // Здесь можно добавить логику сохранения заявки
       alert(`✅ Заявка принята!\n\nГород: ${city}\nДата: ${dateInput.value}\nВремя: ${time}\n\nВ демо-режиме данные не отправляются на сервер.`);
       this.reset();
       renderSlots(dateInput.value);
@@ -468,5 +517,80 @@
     });
   })();
 </script>
+
+<!-- СКРИПТ ДЛЯ ОТЗЫВОВ -->
+<script>
+  (function(){
+    const form = document.getElementById('reviewForm');
+    const list = document.getElementById('reviewsList');
+    const STORAGE_KEY = 'osh_reviews_demo';
+
+    // Загрузка сохраненных отзывов при старте
+    function loadReviews() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        saved.forEach(r => addReviewToDOM(r.name, r.city, r.text, false));
+      } catch(e) {}
+    }
+
+    // Функция добавления отзыва в DOM
+    function addReviewToDOM(name, city, text, prepend = false) {
+      const card = document.createElement('div');
+      card.className = 'review-card';
+      
+      const date = new Date().toLocaleDateString('ru-RU', {day:'numeric', month:'long'});
+      
+      card.innerHTML = `
+        <p class="review-text">«${escapeHtml(text)}»</p>
+        <div class="review-author">— ${escapeHtml(name)}, ${escapeHtml(city)} · ${date}</div>
+      `;
+      
+      if(prepend && list.firstChild) {
+        list.insertBefore(card, list.firstChild);
+      } else {
+        list.appendChild(card);
+      }
+    }
+
+    // Экранирование HTML для безопасности
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    // Обработка отправки формы
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      
+      const name = document.getElementById('rName').value.trim();
+      const city = document.getElementById('rCity').value.trim();
+      const text = document.getElementById('rText').value.trim();
+      
+      if(!name || !city || !text) return;
+
+      // Добавляем в интерфейс сверху
+      addReviewToDOM(name, city, text, true);
+      
+      // Сохраняем в localStorage
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        saved.unshift({name, city, text, date: new Date().toISOString()});
+        // Храним максимум 20 последних отзывов
+        if(saved.length > 20) saved.pop(); 
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+      } catch(e) {}
+
+      // Очищаем форму и показываем уведомление
+      form.reset();
+      alert('✅ Спасибо за ваш отзыв! Он успешно добавлен.');
+      
+      // Плавная прокрутка к новому отзыву
+      list.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+
+    // Инициализация при загрузке
+    loadReviews();
+  })();
+</script>
+
 </body>
 </html>
