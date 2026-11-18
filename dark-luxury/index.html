@@ -3,14 +3,159 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ольга Шевалдина — студия аппаратной косметологии</title>
-<meta name="description" content="SMAS-лифтинг, инъекционные и аппаратные процедуры, ЭЛОС-эпиляция. Индивидуальный подход. Запись по телефону."/>
+<title>Ольга Шевалдина — студия аппаратной косметологии | Челябинск, Коркино</title>
+<meta name="description" content="SMAS-лифтинг, гирудотерапия, обучение с выдачей свидетельств гос. образца. Запись онлайн."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css"/>
+<style>
+  /* Дополнительные стили специально для новых блоков демо */
+  .cities-bar {
+    text-align: center;
+    padding: 0.8rem 0;
+    background: rgba(201,168,106,0.05);
+    border-bottom: 1px solid var(--hair2);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+  .cities-bar span { color: var(--gold); font-weight: 500; margin: 0 0.5rem; }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .gallery-item {
+    background: var(--bg2);
+    border: 1px solid var(--hair2);
+    border-radius: var(--radius, 18px);
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dim);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    position: relative;
+  }
+  .gallery-item::after {
+    content: "Фото До / После";
+    position: absolute;
+    bottom: 1rem; left: 1rem;
+    font-size: 0.8rem;
+    font-family: var(--sans);
+    font-style: normal;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .reviews-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .review-card {
+    background: var(--bg2);
+    border: 1px solid var(--hair2);
+    padding: 2rem;
+    border-radius: var(--radius, 18px);
+  }
+  .review-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .review-author {
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Стили для формы с городами и слотами */
+  .booking-complex {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  @media(max-width: 768px) { .booking-complex { grid-template-columns: 1fr; } }
+  
+  .slot-picker {
+    background: var(--bg2);
+    border: 1px solid var(--hair2);
+    padding: 1.5rem;
+    border-radius: var(--radius, 18px);
+  }
+  .slot-picker h4 {
+    font-family: var(--serif);
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .city-select, .date-select, .time-select {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--hair);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1rem;
+    padding: 0.8rem 0;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  .city-select option, .time-select option { background: var(--bg2); color: var(--ink); }
+  
+  .slots-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .slot-btn {
+    background: transparent;
+    border: 1px solid var(--hair2);
+    color: var(--muted);
+    padding: 0.6rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 8px;
+  }
+  .slot-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .slot-btn.active { background: var(--gold); color: #0c0c0e; border-color: var(--gold); }
+  .slot-btn.disabled { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+
+  .edu-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+  }
+</style>
 </head>
 <body>
+
+<!-- ВЕРХНЯЯ ПОЛОСА С ГОРОДАМИ -->
+<div class="cities-bar">
+  Работаем в городах: <span>Коркино</span> · <span>Челябинск</span> · <span>Тюмень</span> · <span>Самара</span> · <span>Пермь</span>
+</div>
 
 <header class="topbar">
   <div class="container topbar__in">
@@ -18,7 +163,8 @@
     <nav class="menu" id="menu">
       <a href="#studio">Студия</a>
       <a href="#price">Прайс</a>
-      <a href="#approach">Подход</a>
+      <a href="#education">Обучение</a>
+      <a href="#results">Результаты</a>
       <a href="#contact">Запись</a>
     </nav>
     <a href="tel:+79821038579" class="phone-link">8 982 103-85-79</a>
@@ -29,13 +175,13 @@
 <section class="hero" id="top">
   <div class="hero__grid">
     <div class="hero__text container-side">
-      <p class="overline">Est. более 8 лет · Челябинск</p>
+      <p class="overline">Est. более 8 лет · Коркино / Челябинск</p>
       <h1>Ольга<br/><em>Шевалдина</em></h1>
       <p class="hero__role">Врач-косметолог · аккредитованный педагог · мастер аппаратной коррекции тела · гирудотерапевт</p>
       <p class="hero__lead">Не процедуры ради процедур, а возвращение вам уверенности. Современные методики, сертифицированные препараты, внимание к каждой детали вашего лица и тела.</p>
       <div class="hero__actions">
-        <a href="#price" class="btn btn--gold">Смотреть прайс</a>
-        <a href="#contact" class="btn btn--line">Записаться на консультацию</a>
+        <a href="#contact" class="btn btn--gold">Записаться онлайн</a>
+        <a href="#price" class="btn btn--line">Смотреть прайс</a>
       </div>
       <p class="hero__fine">Рассрочка предусмотрена · Имеются противопоказания, необходима консультация</p>
     </div>
@@ -55,8 +201,8 @@
     </div>
     <div class="studio__facts">
       <div class="fact"><b>8+</b><span>лет практики</span></div>
+      <div class="fact"><b>5</b><span>городов присутствия</span></div>
       <div class="fact"><b>100%</b><span>сертифицированные препараты</span></div>
-      <div class="fact"><b>2/1</b><span>индивидуальных протокола на клиента</span></div>
     </div>
   </div>
 </section>
@@ -78,8 +224,87 @@
     <p class="none" id="none" hidden>По вашему запросу ничего не найдено.</p>
 
     <div class="price-foot">
-      <span>Цены в рублях · ИП Шевалдина Ольга Николаевна · Челябинск</span>
+      <span>Цены в рублях · ИП Шевалдина Ольга Николаевна · Челябинск / Коркино</span>
       <span>Информация не является публичной офертой</span>
+    </div>
+  </div>
+</section>
+
+<!-- НОВЫЙ БЛОК: ОБУЧЕНИЕ -->
+<section class="section edu" id="education" style="padding: clamp(3rem,7vw,6rem) 0; border-top: 1px solid var(--hair2); background: var(--bg2);">
+  <div class="container">
+    <div class="sec-head">
+      <p class="overline">Академия красоты</p>
+      <h2>Обучение и повышение квалификации</h2>
+      <p class="sec-sub">Официальные документы для вашей карьеры. Обучение проводится в Коркино и Челябинске.</p>
+    </div>
+    
+    <div class="cards" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+      <article class="card">
+        <span class="card__cat">Гирудотерапия</span>
+        <h3 class="card__name">Курс «Гирудотерапия»</h3>
+        <p class="card__note">Оздоровление медицинскими пиявками. Теория и практика.</p>
+        <div class="card__foot">
+          <div class="card__price">15 000 ₽</div>
+          <span class="edu-badge">Свидетельство гос. образца</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="card__cat">Аппаратная косметология</span>
+        <h3 class="card__name">Мастер аппаратной коррекции тела</h3>
+        <p class="card__note">Полный курс по работе с телом на современном оборудовании.</p>
+        <div class="card__foot">
+          <div class="card__price">По запросу</div>
+          <span class="edu-badge">Сертификат</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <span class="card__cat">Для специалистов</span>
+        <h3 class="card__name">Аттестация и повышение квалификации</h3>
+        <p class="card__note">Выдача документов без обучения для действующих мастеров.</p>
+        <div class="card__foot">
+          <div class="card__price">Индивидуально</div>
+          <span class="edu-badge">Гос. образец</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- НОВЫЙ БЛОК: РЕЗУЛЬТАТЫ И ОТЗЫВЫ -->
+<section class="section results" id="results" style="padding: clamp(3rem,7vw,6rem) 0; border-top: 1px solid var(--hair2);">
+  <div class="container">
+    <div class="sec-head">
+      <p class="overline">Результаты</p>
+      <h2>До и После</h2>
+      <p class="sec-sub">Реальные кейсы моих клиентов. Результаты зависят от индивидуальных особенностей.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">[Фото SMAS лифтинг]</div>
+      <div class="gallery-item">[Фото LPG массаж]</div>
+      <div class="gallery-item">[Фото Инъекции]</div>
+      <div class="gallery-item">[Фото Гирудотерапия]</div>
+    </div>
+
+    <div class="sec-head" style="margin-top: 4rem;">
+      <p class="overline">Отзывы</p>
+      <h2>Что говорят клиенты</h2>
+    </div>
+    <div class="reviews-slider">
+      <div class="review-card">
+        <p class="review-text">«Ольга — волшебница! После курса LPG и Indiba ушли объемы, кожа подтянулась. Очень внимательный подход, всегда объясняет, что делает и зачем.»</p>
+        <div class="review-author">— Анна К., Челябинск</div>
+      </div>
+      <div class="review-card">
+        <p class="review-text">«Прошла обучение гирудотерапии. Документы получила быстро, всё официально. Ольга дает очень много практики, не "вода", а реальные знания.»</p>
+        <div class="review-author">— Марина С., Коркино</div>
+      </div>
+      <div class="review-card">
+        <p class="review-text">«Делала липоредукцию подбородка. Результат превзошел ожидания! Теперь только к Ольге, рекомендую всем подругам.»</p>
+        <div class="review-author">— Елена В., Тюмень</div>
+      </div>
     </div>
   </div>
 </section>
@@ -92,9 +317,9 @@
     </div>
     <ul class="approach__list">
       <li><span>01</span><div><h3>Индивидуальный протокол</h3><p>Программа подбирается под вашу кожу, цели и особенности — без шаблонных «пакетов».</p></div></li>
-      <li><span>02</span><div><h3>Современные методики</h3><p>Аккредитованный преподаватель: постоянно повышаю квалификацию, работаю на актуальном оборудовании.</p></div></li>
+      <li><span>02</span><div><h3>Официальное обучение</h3><p>Аккредитованный педагог: выдаю свидетельства государственного образца и сертификаты.</p></div></li>
       <li><span>03</span><div><h3>Безопасность и качество</h3><p>Только сертифицированные препараты. Честно предупреждаю о противопоказаниях до процедуры.</p></div></li>
-      <li><span>04</span><div><h3>Забота о комфорте</h3><p>Атмосфера студии, внимательное отношение и сопровождение на каждом этапе — от консультации до результата.</p></div></li>
+      <li><span>04</span><div><h3>Работа в 5 городах</h3><p>Основная база в Коркино и Челябинске. Регулярные выезды в Тюмень, Самару и Пермь.</p></div></li>
     </ul>
   </div>
 </section>
@@ -107,23 +332,48 @@
   </div>
 </section>
 
+<!-- НОВАЯ ФОРМА ЗАПИСИ С ГОРОДАМИ И СЛОТАМИ -->
 <section class="contact" id="contact">
   <div class="container contact__grid">
     <div class="contact__info">
-      <p class="overline">Запись</p>
-      <h2>Оставьте заявку</h2>
-      <p>Я свяжусь с вами в течение рабочего дня, уточню детали и подберу удобное время. Экспресс-запись — по телефону.</p>
+      <p class="overline">Онлайн-запись</p>
+      <h2>Выберите город и время</h2>
+      <p>Я работаю в нескольких городах. Выберите удобный локацию, дату и свободное окно. Я свяжусь с вами для подтверждения.</p>
       <a href="tel:+79821038579" class="contact__tel">8 982 103-85-79</a>
-      <p class="contact__hours">Челябинск · Пн–Сб · 10:00 – 20:00</p>
+      <p class="contact__hours">Коркино / Челябинск · Пн–Сб · 10:00 – 20:00</p>
     </div>
-    <form class="cform" id="cform" novalidate>
+
+    <form class="cform booking-complex-form" id="cform" novalidate>
+      <!-- Выбор города -->
+      <label>Город приема
+        <select class="city-select" id="cCity" required>
+          <option value="">— Выберите город —</option>
+          <option value="korkino">Коркино (Основная база)</option>
+          <option value="chelyabinsk">Челябинск</option>
+          <option value="tyumen">Тюмень (выезд)</option>
+          <option value="samara">Самара (выезд)</option>
+          <option value="perm">Пермь (выезд)</option>
+        </select>
+      </label>
+
+      <!-- Выбор услуги -->
+      <label>Процедура<select id="cService" required></select></label>
+
+      <!-- Блок выбора даты и времени -->
+      <div class="slot-picker">
+        <h4>Выберите дату и время</h4>
+        <input type="date" class="date-select" id="cDate" required />
+        
+        <div class="slots-grid" id="slotsGrid">
+          <!-- Слоты генерируются JS -->
+        </div>
+        <input type="hidden" id="cTime" required />
+        <p style="font-size: 0.8rem; color: var(--dim); margin-top: 0.5rem;" id="slotStatus">Сначала выберите дату</p>
+      </div>
+
       <label>Имя<input type="text" id="cName" placeholder="Как к вам обращаться" required/></label>
       <label>Телефон<input type="tel" id="cPhone" placeholder="+7 (___) ___-__-__" required/></label>
-      <label>Процедура<select id="cService" required></select></label>
-      <div class="cform__row">
-        <label>Дата<input type="date" id="cDate" required/></label>
-        <label>Время<select id="cTime" required><option value="">—</option><option>10:00</option><option>11:30</option><option>13:00</option><option>14:30</option><option>16:00</option><option>17:30</option><option>19:00</option></select></label>
-      </div>
+      
       <label>Комментарий<textarea id="cNote" rows="2" placeholder="Пожелания, вопросы (необязательно)"></textarea></label>
       <label class="agree"><input type="checkbox" id="cAgree" required/><span>Согласен(на) на обработку персональных данных и ознакомлен(а), что имеются противопоказания, необходима консультация специалиста.</span></label>
       <button type="submit" class="btn btn--gold btn--full">Отправить заявку</button>
@@ -134,16 +384,89 @@
 
 <footer class="foot">
   <div class="container foot__in">
-    <div class="foot__brand"><span class="logo__mono">ОШ</span><div><b>Студия Ольги Шевалдиной</b><small>Beauty · Health · Confidence · Челябинск</small></div></div>
-    <div class="foot__col"><h4>Навигация</h4><a href="#studio">Студия</a><a href="#price">Прайс</a><a href="#approach">Подход</a><a href="#contact">Запись</a></div>
-    <div class="foot__col"><h4>Контакты</h4><a href="tel:+79821038579">8 982 103-85-79</a><a href="https://vk.com/" target="_blank" rel="noopener">Сообщество ВКонтакте</a><p>Челябинск · Пн–Сб 10:00–20:00</p></div>
+    <div class="foot__brand"><span class="logo__mono">ОШ</span><div><b>Студия Ольги Шевалдиной</b><small>Beauty · Health · Confidence · Коркино / Челябинск</small></div></div>
+    <div class="foot__col"><h4>Навигация</h4><a href="#studio">Студия</a><a href="#price">Прайс</a><a href="#education">Обучение</a><a href="#results">Результаты</a><a href="#contact">Запись</a></div>
+    <div class="foot__col"><h4>Контакты</h4><a href="tel:+79821038579">8 982 103-85-79</a><a href="https://vk.com/" target="_blank" rel="noopener">Сообщество ВКонтакте</a><p>Пн–Сб 10:00–20:00</p></div>
   </div>
-  <div class="container foot__legal">ИП Шевалдина Ольга Николаевна · г. Челябинск · Сайт носит информационный характер и не является публичной офертой · Имеются противопоказания, необходима консультация специалиста · © <span id="yr"></span></div>
+  <div class="container foot__legal">ИП Шевалдина Ольга Николаевна · г. Коркино / Челябинск · Сайт носит информационный характер и не является публичной офертой · Имеются противопоказания, необходима консультация специалиста · © <span id="yr"></span></div>
 </footer>
 
 <div class="toast" id="toast" hidden></div>
 
 <script src="../services.js"></script>
 <script src="js/app.js"></script>
+<script>
+  // СПЕЦИАЛЬНЫЙ СКРИПТ ДЛЯ ДЕМО-ФОРМЫ С ГОРОДАМИ И СЛОТАМИ
+  (function(){
+    const TIMES = ["10:00","11:30","13:00","14:30","16:00","17:30","19:00"];
+    const slotsGrid = document.getElementById('slotsGrid');
+    const dateInput = document.getElementById('cDate');
+    const timeInput = document.getElementById('cTime');
+    const slotStatus = document.getElementById('slotStatus');
+
+    // Установка минимальной даты (завтра)
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+    dateInput.value = tomorrow.toISOString().split('T')[0];
+
+    function renderSlots(isoDate) {
+      slotsGrid.innerHTML = '';
+      if(!isoDate) {
+        slotStatus.textContent = "Сначала выберите дату";
+        return;
+      }
+      
+      // Генерация слотов (имитация занятости через хеш даты)
+      let hash = 0;
+      for(let i=0; i<isoDate.length; i++) hash = ((hash << 5) - hash) + isoDate.charCodeAt(i);
+      
+      TIMES.forEach((t, index) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'slot-btn';
+        btn.textContent = t;
+        
+        // Имитация: каждый 3-й слот занят
+        const isBusy = (hash + index) % 3 === 0;
+        
+        if(isBusy) {
+          btn.classList.add('disabled');
+          btn.disabled = true;
+        } else {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            timeInput.value = t;
+            slotStatus.textContent = `Выбрано: ${new Date(isoDate).toLocaleDateString('ru-RU')} в ${t}`;
+            slotStatus.style.color = 'var(--gold)';
+          });
+        }
+        slotsGrid.appendChild(btn);
+      });
+    }
+
+    dateInput.addEventListener('change', (e) => renderSlots(e.target.value));
+    // Рендер при загрузке
+    renderSlots(dateInput.value);
+
+    // Обработка отправки формы
+    document.getElementById('cform').addEventListener('submit', function(e){
+      e.preventDefault();
+      const city = document.getElementById('cCity').value;
+      const time = timeInput.value;
+      
+      if(!city) return alert('Пожалуйста, выберите город приема');
+      if(!time) return alert('Пожалуйста, выберите время из сетки слотов');
+      
+      // Здесь можно добавить логику сохранения заявки
+      alert(`✅ Заявка принята!\n\nГород: ${city}\nДата: ${dateInput.value}\nВремя: ${time}\n\nВ демо-режиме данные не отправляются на сервер.`);
+      this.reset();
+      renderSlots(dateInput.value);
+      slotStatus.textContent = "Сначала выберите дату";
+      slotStatus.style.color = 'var(--dim)';
+    });
+  })();
+</script>
 </body>
 </html>
