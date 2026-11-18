@@ -1,4 +1,4 @@
-/* ===== DARK LUXURY · «Чёрный бархат» (ФИКС ШАПКИ И ГОРОДОВ) ===== */
+/* ===== DARK LUXURY · «Чёрный бархат» (ФИНАЛЬНАЯ ВЕРСИЯ С ПРАВИЛЬНЫМ МЕНЮ) ===== */
 :root{
   --bg:#121214; 
   --bg2:#1a1a1e; 
@@ -31,7 +31,6 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--in
 
 /* --- ПОЛОСА С ГОРОДАМИ (Обычный блок, уходит при скролле) --- */
 .cities-bar {
-  /* УБРАЛИ position: sticky! Теперь это просто часть страницы */
   text-align: center;
   padding: 0.8rem 0;
   background: rgba(18,18,20,0.98); 
@@ -39,6 +38,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--in
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   color: var(--muted);
+  position: relative; /* Не sticky, чтобы не конфликтовать с оверлеем меню */
+  z-index: 10;
 }
 .cities-bar span { 
   color: var(--gold); 
@@ -97,7 +98,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--in
   position: sticky;
   top: 0; /* Прилипает строго к верхнему краю экрана */
   z-index: 90; 
-  background:rgba(18,18,20,.98); /* Чуть плотнее фон для читаемости */
+  background:rgba(18,18,20,.98); 
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--hair);
 }
@@ -258,26 +259,92 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;color:var(--in
   .promo__in>div{border-right:none;border-bottom:1px solid var(--hair2)}
   .foot__in{grid-template-columns:1fr}
   
-  /* Меню на мобильных */
-  .menu{
-    position: fixed;
-    top: 65px; /* Высота самой шапки (.topbar) */
-    left:0;right:0;
-    flex-direction:column;
-    background:var(--bg2);
-    border-bottom:1px solid var(--hair);
-    padding:2rem 5%;
-    gap:1.5rem;
-    transform:translateY(-130%);
-    transition:transform .4s;
-    margin:0;
-    z-index:80;
+  /* --- ФИКС МЕНЮ ДЛЯ МОБИЛЬНЫХ (ПОЛНОЭКРАННЫЙ ОВЕРЛЕЙ) --- */
+  
+  /* Шапка остается липкой */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 90;
   }
-  .menu.open{transform:translateY(0)}
-  .burger{display:flex}
-  .phone-link{display:none}
-  .hero h1{font-size:3rem}
+
+  /* Города уходят при скролле, но если меню открыто, они перекрыты им */
+  .cities-bar {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* САМО МЕНЮ: Полностью скрыто по умолчанию */
+  .menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    
+    background: rgba(10, 10, 12, 0.98);
+    backdrop-filter: blur(15px);
+    
+    /* Ключевой момент для скрытия "хвоста": */
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    
+    z-index: 200; /* Выше всего остального */
+    padding: 2rem;
+  }
+
+  /* Когда бургер нажат (класс .open добавляется через JS): */
+  .menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  /* Стилизация ссылок внутри полного экрана */
+  .menu a {
+    font-size: 1.5rem;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--serif);
+    transition: color 0.3s;
+    position: static;
+  }
+  
+  .menu a::after {
+    display: none;
+  }
+
+  .menu a:hover {
+    color: var(--gold);
+  }
+
+  /* Бургер кнопка должна быть видна поверх меню, чтобы закрыть его */
+  .burger {
+    display: flex;
+    position: relative;
+    z-index: 201;
+  }
+  
+  .phone-link {
+    display: none;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+  }
 }
+
 @media(max-width:560px){
   .cform__row{grid-template-columns:1fr}
   .pl-row{flex-wrap:wrap;align-items:center;gap:.5rem;padding:1rem 0}
