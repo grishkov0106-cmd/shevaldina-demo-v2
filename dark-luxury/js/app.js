@@ -1,256 +1,179 @@
 // dark-luxury/js/app.js
 
 document.addEventListener('DOMContentLoaded', () => {
-  
-  // --- 1. БУРГЕР МЕНЮ ---
-  const burger = document.getElementById('burger');
-  const menu = document.getElementById('menu');
-  if (burger && menu) {
-    burger.addEventListener('click', () => {
-      menu.classList.toggle('open');
-    });
-    // Закрываем меню при клике на любую ссылку внутри него
-    menu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => menu.classList.remove('open'));
-    });
-  }
-
-  // --- 2. ГОД В ФУТЕРЕ ---
-  const yrSpan = document.getElementById('yr');
-  if (yrSpan) yrSpan.textContent = new Date().getFullYear();
-
-  // --- 3. РЕНДЕР ПРАЙСА С БЕЙДЖАМИ ГОРОДОВ И ПРИМЕЧАНИЯМИ ---
+  setupBurger();
+  setYear();
   renderPriceList();
-
-  // --- 4. ФИЛЬТРЫ И ПОИСК ПРАЙСА ---
   setupFiltersAndSearch();
-
-  // --- 5. ЛОГИКА ФОРМЫ ЗАПИСИ (ГОРОДА + УСЛУГИ) ---
+  renderResultsGallery();
   setupBookingForm();
 });
 
-/**
- * Рендерит список услуг по категориям.
- */
-function renderPriceList() {
-  const container = document.getElementById('pricelist');
-  if (!container || !window.SERVICES || !window.CATEGORIES) return;
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function cityName(c){return c==='all'?'Все города':(window.CITY_NAMES[c]||c);}
 
-  container.innerHTML = '';
+function setupBurger(){
+  const burger=document.getElementById('burger');
+  const menu=document.getElementById('menu');
+  if(burger&&menu){
+    burger.addEventListener('click',()=>menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>menu.classList.remove('open')));
+  }
+}
+function setYear(){const y=document.getElementById('yr');if(y)y.textContent=new Date().getFullYear();}
 
-  window.CATEGORIES.forEach(cat => {
-    if (cat.id === 'all') return; 
+function renderPriceList(){
+  const container=document.getElementById('pricelist');
+  if(!container||!window.SERVICES||!window.CATEGORIES)return;
+  container.innerHTML='';
 
-    const servicesInCat = window.SERVICES.filter(s => s.cat === cat.id);
-    if (servicesInCat.length === 0) return;
+  window.CATEGORIES.forEach(cat=>{
+    if(cat.id==='all')return;
+    const items=window.SERVICES.filter(s=>s.cat===cat.id);
+    if(!items.length)return;
 
-    const groupEl = document.createElement('div');
-    groupEl.className = 'pl-group';
-    groupEl.dataset.category = cat.id;
+    const group=document.createElement('div');
+    group.className='pl-group';
+    group.dataset.category=cat.id;
 
-    // Заголовок группы + Общий список городов для категории
-    const uniqueCitiesForCat = [...new Set(servicesInCat.flatMap(s => s.cities))]
-      .map(c => c === "all" ? "Все города" : (window.CITY_NAMES[c] || c))
-      .join(", ");
+    const cities=[...new Set(items.flatMap(s=>s.cities))].map(cityName).join(', ');
+    const moreLink=cat.details?`<a class="pl-group__more" href="${esc(cat.details)}">Подробнее о процедуре →</a>`:'';
 
-    const titleEl = document.createElement('h3');
-    titleEl.className = 'pl-group__title';
-    titleEl.innerHTML = `${cat.label} <span class="city-badges">(${uniqueCitiesForCat})</span>`;
-    groupEl.appendChild(titleEl);
+    const title=document.createElement('h3');
+    title.className='pl-group__title';
+    title.innerHTML=`${esc(cat.label)} <span class="city-badges">(${esc(cities)})</span>${moreLink}`;
+    group.appendChild(title);
 
-    // Строки услуг
-    servicesInCat.forEach(service => {
-      const row = document.createElement('div');
-      row.className = 'pl-row';
-      
-      let priceText = service.price;
-      if (service.unit) priceText += ` <u>${service.unit}</u>`;
-      
-      // Формируем строку городов для конкретной услуги
-      let citiesHtml = '';
-      if (service.cities && service.cities.length > 0) {
-        const cityNames = service.cities.map(c => 
-          c === "all" ? "Все города" : (window.CITY_NAMES[c] || c)
-        ).join(", ");
-        
-        citiesHtml = `<small class="service-cities">${cityNames}</small>`;
-      }
-
-      // Формируем примечание (note) - здесь выводится инфо про онлайн/медобразование
-      let noteHtml = '';
-      if (service.note) {
-        noteHtml = `<small class="service-note">${service.note}</small>`;
-      }
-
-      row.innerHTML = `
-        <div class="pl-row__name">
-          ${service.name}
-          ${citiesHtml}
-          ${noteHtml}
-        </div>
+    items.forEach(service=>{
+      const row=document.createElement('div');
+      row.className='pl-row';
+      let priceText=esc(service.price);
+      if(service.unit)priceText+=` <u>${esc(service.unit)}</u>`;
+      const citiesHtml=service.cities&&service.cities.length
+        ?`<small class="service-cities">${esc(service.cities.map(cityName).join(', '))}</small>`:'';
+      const noteHtml=service.note?`<small class="service-note">${esc(service.note)}</small>`:'';
+      row.innerHTML=`
+        <div class="pl-row__name">${esc(service.name)}${citiesHtml}${noteHtml}</div>
         <div class="pl-row__dots"></div>
         <div class="pl-row__price">${priceText}</div>
-        <button type="button" class="pl-row__book" data-service="${service.cat}|${service.name}" data-price="${service.price}">Записаться</button>
-      `;
-      groupEl.appendChild(row);
+        <button type="button" class="pl-row__book" data-service="${esc(service.cat)}|${esc(service.name)}">Записаться</button>`;
+      group.appendChild(row);
     });
-
-    container.appendChild(groupEl);
+    container.appendChild(group);
   });
 
-  // Обработчики кнопок "Записаться" из прайса
-  document.querySelectorAll('.pl-row__book').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const serviceData = this.getAttribute('data-service');
-      const [catId, serviceName] = serviceData.split('|');
-      
-      const fullService = window.SERVICES.find(s => s.cat === catId && s.name === serviceName);
-      
-      if (fullService) {
-        document.querySelector('a[href="#contact"]').click();
-        
-        setTimeout(() => {
-          const citySelect = document.getElementById('cCity');
-          const serviceSelect = document.getElementById('cService');
-          
-          if (fullService.cities.includes("all")) {
-             citySelect.value = ""; 
-          } else if (fullService.cities.length > 0) {
-             citySelect.value = fullService.cities[0];
-          }
-          
-          updateServicesByCity(citySelect.value);
-          
-          Array.from(serviceSelect.options).forEach(opt => {
-            if (opt.value.includes(serviceName)) {
-              opt.selected = true;
-            }
-          });
-          
-          document.getElementById('cName').focus();
-        }, 300);
-      }
+  document.querySelectorAll('.pl-row__book').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      const [catId,name]=this.getAttribute('data-service').split('|');
+      const full=window.SERVICES.find(s=>s.cat===catId&&s.name===name);
+      if(!full)return;
+      const link=document.querySelector('a[href="#contact"]');
+      if(link)link.click();
+      setTimeout(()=>{
+        const citySel=document.getElementById('cCity');
+        const servSel=document.getElementById('cService');
+        if(!citySel||!servSel)return;
+        citySel.value=full.cities.includes('all')?'':(full.cities[0]||'');
+        updateServicesByCity(citySel.value);
+        Array.from(servSel.options).forEach(o=>{if(o.value.includes(name))o.selected=true;});
+        const nm=document.getElementById('cName');if(nm)nm.focus();
+      },300);
     });
   });
 }
 
-/**
- * Настраивает фильтры категорий и поиск по прайсу.
- */
-function setupFiltersAndSearch() {
-  const filtersContainer = document.getElementById('filters');
-  const searchInput = document.getElementById('find');
-  const noneMsg = document.getElementById('none');
-
-  if (!filtersContainer) return;
-
-  window.CATEGORIES.forEach(cat => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'filt' + (cat.id === 'all' ? ' on' : '');
-    btn.textContent = cat.label;
-    btn.dataset.filter = cat.id;
-    
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filt').forEach(b => b.classList.remove('on'));
-      btn.classList.add('on');
-      applyFilter(cat.id, searchInput?.value || '');
+function setupFiltersAndSearch(){
+  const box=document.getElementById('filters');
+  const search=document.getElementById('find');
+  if(!box)return;
+  window.CATEGORIES.forEach(cat=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='filt'+(cat.id==='all'?' on':'');
+    b.textContent=cat.label;
+    b.dataset.filter=cat.id;
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.filt').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      applyFilter(cat.id,search?search.value:'');
     });
-    
-    filtersContainer.appendChild(btn);
+    box.appendChild(b);
   });
+  if(search)search.addEventListener('input',e=>{
+    const active=document.querySelector('.filt.on');
+    applyFilter(active?active.dataset.filter:'all',e.target.value);
+  });
+}
 
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const activeFilter = document.querySelector('.filt.on')?.dataset.filter || 'all';
-      applyFilter(activeFilter, e.target.value);
+function applyFilter(catId,term){
+  const t=term.toLowerCase().trim();
+  let any=false;
+  document.querySelectorAll('.pl-group').forEach(g=>{
+    const show=g.dataset.category===catId||catId==='all';
+    let vis=false;
+    g.querySelectorAll('.pl-row').forEach(r=>{
+      const nm=r.querySelector('.pl-row__name');
+      const ok=!t||(nm?nm.textContent.toLowerCase():'').includes(t);
+      const on=show&&ok;
+      r.style.display=on?'':'none';
+      if(on){vis=true;any=true;}
     });
+    g.style.display=vis?'':'none';
+  });
+  const none=document.getElementById('none');
+  if(none)none.hidden=any;
+}
+
+// Блок «Результаты» на главной: строится из авто-детекта файлов в img/before-after/
+async function renderResultsGallery(){
+  const wrap=document.getElementById('resultsGrid');
+  if(!wrap||!window.CATEGORIES||!window.getGalleryData)return;
+  const cats=window.CATEGORIES.filter(c=>c.id!=='all');
+  const ids=cats.map(c=>c.id);
+  let data={};
+  try{ data=await window.getGalleryData('img/', ids); }catch(e){ data={}; }
+  wrap.innerHTML='';
+  let rendered=0;
+  cats.forEach(c=>{
+    const photos=(data[c.id]||[]).slice(0,5);
+    if(!photos.length)return;
+    rendered++;
+    const block=document.createElement('div');
+    block.className='res-cat';
+    const grid=photos.map(p=>`<figure class="res-photo"><img src="${esc(p.src)}" alt="${esc(c.label)} — до и после" loading="lazy"/><figcaption>${esc(p.caption)}</figcaption></figure>`).join('');
+    block.innerHTML=`<h4 class="res-cat__title">${esc(c.label)}</h4><div class="res-grid">${grid}</div><a class="res-vk" href="${esc(window.VK_ALBUM||'#')}" target="_blank" rel="noopener">Смотреть все работы в ВК →</a>`;
+    wrap.appendChild(block);
+  });
+  if(!rendered){
+    wrap.innerHTML=`<p class="res-empty">Фото результатов готовятся. Все работы можно посмотреть в сообществе ВКонтакте.</p><a class="res-vk" href="${esc(window.VK_ALBUM||'#')}" target="_blank" rel="noopener">Перейти в ВК →</a>`;
   }
 }
 
-function applyFilter(categoryId, searchTerm) {
-  const groups = document.querySelectorAll('.pl-group');
-  const rows = document.querySelectorAll('.pl-row');
-  const noneMsg = document.getElementById('none');
-  let hasResults = false;
-
-  const term = searchTerm.toLowerCase().trim();
-
-  groups.forEach(group => {
-    const catId = group.dataset.category;
-    const shouldShowGroup = categoryId === 'all' || catId === categoryId;
-    
-    let groupHasVisibleRows = false;
-
-    group.querySelectorAll('.pl-row').forEach(row => {
-      const nameEl = row.querySelector('.pl-row__name');
-      const textContent = nameEl ? nameEl.textContent.toLowerCase() : '';
-      
-      const matchesSearch = !term || textContent.includes(term);
-      const isVisible = shouldShowGroup && matchesSearch;
-
-      row.style.display = isVisible ? '' : 'none';
-      if (isVisible) {
-        groupHasVisibleRows = true;
-        hasResults = true;
-      }
-    });
-
-    group.style.display = groupHasVisibleRows ? '' : 'none';
-  });
-
-  if (noneMsg) {
-    noneMsg.hidden = hasResults;
-  }
+function setupBookingForm(){
+  const city=document.getElementById('cCity');
+  const serv=document.getElementById('cService');
+  if(!city||!serv)return;
+  city.addEventListener('change',function(){updateServicesByCity(this.value);});
+  updateServicesByCity(city.value);
 }
 
-/**
- * Логика формы записи: зависимость списка услуг от выбранного города.
- */
-function setupBookingForm() {
-  const citySelect = document.getElementById('cCity');
-  const serviceSelect = document.getElementById('cService');
-  
-  if (!citySelect || !serviceSelect) return;
-
-  citySelect.addEventListener('change', function() {
-    updateServicesByCity(this.value);
+function updateServicesByCity(selected){
+  const sel=document.getElementById('cService');
+  if(!sel)return;
+  const cur=sel.value;
+  sel.innerHTML='<option value="">— Выберите услугу —</option>';
+  window.SERVICES.forEach(s=>{
+    let ok=false;
+    if(selected==='')ok=true;
+    else if(s.cities.includes('all'))ok=true;
+    else if(s.cities.includes(selected))ok=true;
+    if(!ok)return;
+    const o=document.createElement('option');
+    o.value=`${s.cat}|${s.name}`;
+    let txt=`${s.name} — ${s.price} ₽`;
+    if(s.unit)txt+=` (${s.unit})`;
+    o.textContent=txt;
+    sel.appendChild(o);
   });
-
-  updateServicesByCity(citySelect.value);
-}
-
-function updateServicesByCity(selectedCity) {
-  const serviceSelect = document.getElementById('cService');
-  if (!serviceSelect) return;
-  
-  const currentValue = serviceSelect.value;
-  serviceSelect.innerHTML = '<option value="">— Выберите услугу —</option>';
-  
-  window.SERVICES.forEach(service => {
-    let isAvailable = false;
-    
-    if (selectedCity === "") {
-      isAvailable = true; 
-    } else if (service.cities.includes("all")) {
-      isAvailable = true;
-    } else if (service.cities.includes(selectedCity)) {
-      isAvailable = true;
-    }
-    
-    if (isAvailable) {
-      const option = document.createElement('option');
-      option.value = `${service.cat}|${service.name}`;
-      
-      let text = `${service.name} — ${service.price} ₽`;
-      if (service.unit) text += ` (${service.unit})`;
-      
-      option.textContent = text;
-      serviceSelect.appendChild(option);
-    }
-  });
-
-  if (currentValue && Array.from(serviceSelect.options).some(o => o.value === currentValue)) {
-    serviceSelect.value = currentValue;
-  }
+  if(cur&&Array.from(sel.options).some(o=>o.value===cur))sel.value=cur;
 }
