@@ -3,186 +3,61 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ольга Шевалдина — студия аппаратной косметологии | Челябинск, Коркино</title>
-<meta name="description" content="SMAS-лифтинг, гирудотерапия, обучение с выдачей свидетельств гос. образца. Запись онлайн."/>
+<title>Ольга Шевалдина — косметолог в Челябинске и Коркино | SMAS-лифтинг, инъекции, обучение</title>
+<meta name="description" content="Врач-косметолог Ольга Шевалдина. SMAS-лифтинг, инъекционные процедуры, гирудотерапия, обучение с документами гос. образца. Запись онлайн: Коркино, Челябинск, Тюмень, Самара, Пермь."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css"/>
+<!-- Open Graph / соцсети -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Студия Ольги Шевалдиной"/>
+<meta property="og:title" content="Ольга Шевалдина — косметолог в Челябинске и Коркино"/>
+<meta property="og:description" content="SMAS-лифтинг, инъекции, гирудотерапия, обучение с документами гос. образца. Запись онлайн по 5 городам."/>
+<meta property="og:url" content="https://grishkov0106-cmd.github.io/dark-luxury/"/>
+<meta property="og:image" content="https://grishkov0106-cmd.github.io/img/olga-hero.jpg"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="geo.region" content="RU-CHE"/>
+<meta name="geo.placename" content="Челябинск, Коркино"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":["Person","LocalBusiness"],
+  "name":"Ольга Шевалдина",
+  "jobTitle":"Врач-косметолог, аккредитованный педагог, гирудотерапевт",
+  "image":"https://grishkov0106-cmd.github.io/img/olga-hero.jpg",
+  "telephone":"+79821038579",
+  "url":"https://grishkov0106-cmd.github.io/dark-luxury/",
+  "areaServed":["Коркино","Челябинск","Тюмень","Самара","Пермь"],
+  "address":{"@type":"PostalAddress","addressLocality":"Челябинск","addressRegion":"Челябинская область","addressCountry":"RU"},
+  "openingHours":"Mo-Sa 10:00-20:00",
+  "priceRange":"₽₽",
+  "sameAs":["https://vk.com/"]
+}
+</script>
 <style>
-  /* Дополнительные стили специально для новых блоков демо */
-  .cities-bar {
-    text-align: center;
-    padding: 0.8rem 0;
-    background: rgba(201,168,106,0.05);
-    border-bottom: 1px solid var(--hair2);
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-  }
-  .cities-bar span { color: var(--gold); font-weight: 500; margin: 0 0.5rem; }
-  
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  .gallery-item {
-    background: var(--bg2);
-    border: 1px solid var(--hair2);
-    border-radius: var(--radius, 18px);
-    overflow: hidden;
-    aspect-ratio: 1/1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--dim);
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.2rem;
-    position: relative;
-  }
-  .gallery-item::after {
-    content: "Фото До / После";
-    position: absolute;
-    bottom: 1rem; left: 1rem;
-    font-size: 0.8rem;
-    font-family: var(--sans);
-    font-style: normal;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  
-  .reviews-slider {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  .review-card {
-    background: var(--bg2);
-    border: 1px solid var(--hair2);
-    padding: 2rem;
-    border-radius: var(--radius, 18px);
-    transition: transform 0.3s ease;
-  }
-  .review-text {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    color: var(--ink);
-  }
-  .review-author {
-    font-size: 0.85rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  /* Стили для формы с городами и слотами */
-  .booking-complex {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-  @media(max-width: 768px) { .booking-complex { grid-template-columns: 1fr; } }
-  
-  .slot-picker {
-    background: var(--bg2);
-    border: 1px solid var(--hair2);
-    padding: 1.5rem;
-    border-radius: var(--radius, 18px);
-  }
-  .slot-picker h4 {
-    font-family: var(--serif);
-    color: var(--gold);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
-  .city-select, .date-select, .time-select {
-    width: 100%;
-    background: none;
-    border: none;
-    border-bottom: 1px solid var(--hair);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 1rem;
-    padding: 0.8rem 0;
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
-  .city-select option, .time-select option { background: var(--bg2); color: var(--ink); }
-  
-  .slots-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-  .slot-btn {
-    background: transparent;
-    border: 1px solid var(--hair2);
-    color: var(--muted);
-    padding: 0.6rem;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 8px;
-  }
-  .slot-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .slot-btn.active { background: var(--gold); color: #0c0c0e; border-color: var(--gold); }
-  .slot-btn.disabled { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
-
-  .edu-badge {
-    display: inline-block;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 0.3rem 0.8rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 0.5rem;
-    border-radius: 4px;
-  }
-
-  /* Стили для формы отзывов */
-  .review-form-wrapper {
-    margin-top: 3rem; 
-    max-width: 600px; 
-    margin-inline: auto;
-  }
-  .review-form-wrapper input, 
-  .review-form-wrapper textarea {
-    background: var(--bg2); 
-    border-radius: 8px; 
-    padding: 0.8rem; 
-    border: 1px solid var(--hair2);
-    width: 100%;
-    color: var(--ink);
-    font-family: var(--sans);
-  }
-  .review-form-wrapper label {
-    display: block;
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .review-form-wrapper label:first-child { margin-top: 0; }
+  .cities-bar{text-align:center;padding:.8rem 0;background:rgba(18,18,20,.98);border-bottom:1px solid var(--hair);font-size:.85rem;letter-spacing:.1em;color:var(--muted);position:relative;z-index:10}
+  .cities-bar span{color:var(--gold);font-weight:600;margin:0 .5rem}
+  .slot-picker{background:var(--bg2);border:1px solid var(--hair);padding:1.5rem;border-radius:18px}
+  .slot-picker h4{font-family:var(--serif);color:var(--gold);margin-bottom:1rem;font-size:1.2rem}
+  .city-select,.date-select{width:100%;background:none;border:none;border-bottom:1px solid var(--hair);color:var(--ink);font-family:var(--sans);font-size:1rem;padding:.8rem 0;margin-bottom:1rem;cursor:pointer}
+  .city-select option{background:#1a1a1e;color:var(--ink)}
+  .slots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:1rem}
+  .slot-btn{background:transparent;border:1px solid var(--hair2);color:var(--muted);padding:.6rem;font-size:.85rem;cursor:pointer;transition:.3s;border-radius:8px}
+  .slot-btn:hover:not(:disabled){border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.05)}
+  .slot-btn.active{background:var(--gold);color:#0a0a0c;border-color:var(--gold);font-weight:600}
+  .slot-btn.disabled{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+  .edu-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:.3rem .8rem;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.5rem;border-radius:4px;background:rgba(212,175,55,.1)}
+  .review-form-wrapper{margin-top:3rem;max-width:600px;margin-inline:auto}
+  .review-form-wrapper input,.review-form-wrapper textarea{background:var(--bg2);border-radius:8px;padding:.8rem;border:1px solid var(--hair);width:100%;color:var(--ink);font-family:var(--sans);transition:border-color .3s}
+  .review-form-wrapper input:focus,.review-form-wrapper textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 5px rgba(212,175,55,.2)}
+  .review-form-wrapper label{display:block;margin-top:1rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .review-form-wrapper label:first-child{margin-top:0}
 </style>
 </head>
 <body>
 
-<!-- ВЕРХНЯЯ ПОЛОСА С ГОРОДАМИ -->
-<div class="cities-bar">
-  Работаем в городах: <span>Коркино</span> · <span>Челябинск</span> · <span>Тюмень</span> · <span>Самара</span> · <span>Пермь</span>
-</div>
+<div class="cities-bar">Работаем в городах: <span>Коркино</span> · <span>Челябинск</span> · <span>Тюмень</span> · <span>Самара</span> · <span>Пермь</span></div>
 
 <header class="topbar">
   <div class="container topbar__in">
@@ -215,7 +90,7 @@
     <div class="hero__photo">
       <img src="../img/olga-hero.jpg" alt="Ольга Шевалдина" onerror="this.style.display='none';document.querySelector('.hero__ph-fb').style.display='flex'"/>
       <div class="hero__ph-fb"><span>ОШ</span></div>
-      <div class="hero__caption">Твоя красота —<br/>моё вдохновение</div>
+      <div class="hero__caption">Твоя красота — моё вдохновение</div>
     </div>
   </div>
 </section>
@@ -239,17 +114,12 @@
     <div class="sec-head">
       <p class="overline">Прайс-лист</p>
       <h2>Услуги и стоимость</h2>
-      <p class="sec-sub">Выберите направление. Стоимость указана за процедуру; при курсах и комплексах действуют специальные условия.</p>
+      <p class="sec-sub">Выберите направление. Рядом с каждой процедурой указано, в каких городах она доступна. Нажмите «Подробнее», чтобы узнать, как работает методика.</p>
     </div>
-
     <div class="filters" id="filters"></div>
-    <div class="find">
-      <input type="text" id="find" placeholder="Найти процедуру — например, RF-лифтинг" autocomplete="off"/>
-    </div>
-
+    <div class="find"><input type="text" id="find" placeholder="Найти процедуру — например, RF-лифтинг" autocomplete="off"/></div>
     <div class="pricelist" id="pricelist"></div>
     <p class="none" id="none" hidden>По вашему запросу ничего не найдено.</p>
-
     <div class="price-foot">
       <span>Цены в рублях · ИП Шевалдина Ольга Николаевна · Челябинск / Коркино</span>
       <span>Информация не является публичной офертой</span>
@@ -257,42 +127,38 @@
   </div>
 </section>
 
-<!-- НОВЫЙ БЛОК: ОБУЧЕНИЕ -->
-<section class="section edu" id="education" style="padding: clamp(3rem,7vw,6rem) 0; border-top: 1px solid var(--hair2); background: var(--bg2);">
+<section class="edu" id="education" style="padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--hair);background:var(--bg2)">
   <div class="container">
     <div class="sec-head">
       <p class="overline">Академия красоты</p>
       <h2>Обучение и повышение квалификации</h2>
-      <p class="sec-sub">Официальные документы для вашей карьеры. Обучение проводится в Коркино и Челябинске.</p>
+      <p class="sec-sub">Официальные документы для вашей карьеры. Очно в Коркино и Челябинске, а также онлайн — по вашему желанию.</p>
     </div>
-    
-    <div class="cards" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-      <article class="card">
-        <span class="card__cat">Гирудотерапия</span>
-        <h3 class="card__name">Курс «Гирудотерапия»</h3>
-        <p class="card__note">Оздоровление медицинскими пиявками. Теория и практика.</p>
-        <div class="card__foot">
-          <div class="card__price">15 000 ₽</div>
-          <span class="edu-badge">Свидетельство гос. образца</span>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem">
+      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px">
+        <span style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em">Гирудотерапия</span>
+        <h3 style="font-family:var(--serif);font-size:1.3rem;margin:.5rem 0">Курс «Гирудотерапия»</h3>
+        <p style="color:var(--muted);font-size:.9rem">Оздоровление медицинскими пиявками. Теория и практика.</p>
+        <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold)">15 000 ₽</div>
+          <span class="edu-badge">Гос. образец · Онлайн</span>
         </div>
       </article>
-
-      <article class="card">
-        <span class="card__cat">Аппаратная косметология</span>
-        <h3 class="card__name">Мастер аппаратной коррекции тела</h3>
-        <p class="card__note">Полный курс по работе с телом на современном оборудовании.</p>
-        <div class="card__foot">
-          <div class="card__price">По запросу</div>
+      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px">
+        <span style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em">Аппаратная косметология</span>
+        <h3 style="font-family:var(--serif);font-size:1.3rem;margin:.5rem 0">Мастер аппаратной коррекции тела</h3>
+        <p style="color:var(--muted);font-size:.9rem">Курс по работе с телом. Очно или онлайн.</p>
+        <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold)">Индивидуально</div>
           <span class="edu-badge">Сертификат</span>
         </div>
       </article>
-
-      <article class="card">
-        <span class="card__cat">Для специалистов</span>
-        <h3 class="card__name">Аттестация и повышение квалификации</h3>
-        <p class="card__note">Выдача документов без обучения для действующих мастеров.</p>
-        <div class="card__foot">
-          <div class="card__price">Индивидуально</div>
+      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px">
+        <span style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em">Для специалистов</span>
+        <h3 style="font-family:var(--serif);font-size:1.3rem;margin:.5rem 0">Аттестация и повышение квалификации</h3>
+        <p style="color:var(--muted);font-size:.9rem">Выдача документов действующим мастерам. Возможно онлайн.</p>
+        <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold)">Индивидуально</div>
           <span class="edu-badge">Гос. образец</span>
         </div>
       </article>
@@ -300,59 +166,32 @@
   </div>
 </section>
 
-<!-- НОВЫЙ БЛОК: РЕЗУЛЬТАТЫ И ОТЗЫВЫ -->
-<section class="section results" id="results" style="padding: clamp(3rem,7vw,6rem) 0; border-top: 1px solid var(--hair2);">
+<section class="results" id="results" style="padding:clamp(3rem,7vw,6rem) 0;border-top:1px solid var(--hair)">
   <div class="container">
     <div class="sec-head">
       <p class="overline">Результаты</p>
       <h2>До и После</h2>
-      <p class="sec-sub">Реальные кейсы моих клиентов. Результаты зависят от индивидуальных особенностей.</p>
+      <p class="sec-sub">Реальные кейсы клиентов. На одном кадре слева — «до», справа — «после». Результаты зависят от индивидуальных особенностей.</p>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-item">[Фото SMAS лифтинг]</div>
-      <div class="gallery-item">[Фото LPG массаж]</div>
-      <div class="gallery-item">[Фото Инъекции]</div>
-      <div class="gallery-item">[Фото Гирудотерапия]</div>
-    </div>
+    <div id="resultsGrid" class="res-block"></div>
 
-    <div class="sec-head" style="margin-top: 4rem;">
+    <div class="sec-head" style="margin-top:4rem">
       <p class="overline">Отзывы</p>
       <h2>Что говорят клиенты</h2>
     </div>
-    
-    <!-- Слайдер существующих отзывов -->
     <div class="reviews-slider" id="reviewsList">
-      <div class="review-card">
-        <p class="review-text">«Ольга — волшебница! После курса LPG и Indiba ушли объемы, кожа подтянулась. Очень внимательный подход, всегда объясняет, что делает и зачем.»</p>
-        <div class="review-author">— Анна К., Челябинск</div>
-      </div>
-      <div class="review-card">
-        <p class="review-text">«Прошла обучение гирудотерапии. Документы получила быстро, всё официально. Ольга дает очень много практики, не "вода", а реальные знания.»</p>
-        <div class="review-author">— Марина С., Коркино</div>
-      </div>
-      <div class="review-card">
-        <p class="review-text">«Делала липоредукцию подбородка. Результат превзошел ожидания! Теперь только к Ольге, рекомендую всем подругам.»</p>
-        <div class="review-author">— Елена В., Тюмень</div>
-      </div>
+      <div class="review-card"><p class="review-text">«Ольга — волшебница! После курса LPG и Indiba ушли объемы, кожа подтянулась. Очень внимательный подход, всегда объясняет, что делает и зачем.»</p><div class="review-author">— Анна К., Челябинск</div></div>
+      <div class="review-card"><p class="review-text">«Прошла обучение гирудотерапии. Документы получила быстро, всё официально. Ольга дает очень много практики, не "вода", а реальные знания.»</p><div class="review-author">— Марина С., Коркино</div></div>
+      <div class="review-card"><p class="review-text">«Делала липоредукцию подбородка. Результат превзошел ожидания! Теперь только к Ольге, рекомендую всем подругам.»</p><div class="review-author">— Елена В., Тюмень</div></div>
     </div>
-
-    <!-- Форма добавления нового отзыва -->
     <div class="review-form-wrapper">
-      <h3 style="font-family: var(--serif); color: var(--gold); text-align: center; margin-bottom: 1.5rem; font-size: 1.4rem;">Оставить отзыв</h3>
-      <form id="reviewForm" class="cform" style="background: transparent; border: none; padding: 0;">
-        <label>Ваше имя
-          <input type="text" id="rName" placeholder="Как вас зовут" required/>
-        </label>
-        <label>Город
-          <input type="text" id="rCity" placeholder="Например: Челябинск" required/>
-        </label>
-        <label>Ваш отзыв
-          <textarea id="rText" rows="4" placeholder="Расскажите о вашем опыте..." required></textarea>
-        </label>
-        <button type="submit" class="btn btn--gold btn--full" style="margin-top: 1.5rem;">Опубликовать отзыв</button>
-        <p style="font-size: 0.75rem; color: var(--dim); text-align: center; margin-top: 0.8rem;">
-          Демо: отзыв появится сразу, но сохранится только в вашем браузере. На боевом сайте отзывы проходят модерацию.
-        </p>
+      <h3 style="font-family:var(--serif);color:var(--gold);text-align:center;margin-bottom:1.5rem;font-size:1.4rem">Оставить отзыв</h3>
+      <form id="reviewForm" style="display:grid;gap:0">
+        <label>Ваше имя<input type="text" id="rName" placeholder="Как вас зовут" required/></label>
+        <label>Город<input type="text" id="rCity" placeholder="Например: Челябинск" required/></label>
+        <label>Ваш отзыв<textarea id="rText" rows="4" placeholder="Расскажите о вашем опыте..." required></textarea></label>
+        <button type="submit" class="btn btn--gold btn--full" style="margin-top:1.5rem">Опубликовать отзыв</button>
+        <p style="font-size:.75rem;color:var(--dim);text-align:center;margin-top:.8rem">Демо: отзыв сохранится только в вашем браузере. На боевом сайте проходит модерацию.</p>
       </form>
     </div>
   </div>
@@ -360,10 +199,7 @@
 
 <section class="approach" id="approach">
   <div class="container approach__grid">
-    <div class="approach__head">
-      <p class="overline">Подход</p>
-      <h2>Почему выбирают именно меня</h2>
-    </div>
+    <div class="approach__head"><p class="overline">Подход</p><h2>Почему выбирают именно меня</h2></div>
     <ul class="approach__list">
       <li><span>01</span><div><h3>Индивидуальный протокол</h3><p>Программа подбирается под вашу кожу, цели и особенности — без шаблонных «пакетов».</p></div></li>
       <li><span>02</span><div><h3>Официальное обучение</h3><p>Аккредитованный педагог: выдаю свидетельства государственного образца и сертификаты.</p></div></li>
@@ -381,19 +217,16 @@
   </div>
 </section>
 
-<!-- НОВАЯ ФОРМА ЗАПИСИ С ГОРОДАМИ И СЛОТАМИ -->
 <section class="contact" id="contact">
   <div class="container contact__grid">
     <div class="contact__info">
       <p class="overline">Онлайн-запись</p>
       <h2>Выберите город и время</h2>
-      <p>Я работаю в нескольких городах. Выберите удобный локацию, дату и свободное окно. Я свяжусь с вами для подтверждения.</p>
+      <p>Я работаю в нескольких городах. Выберите локацию, дату и свободное окно. Список услуг подстроится под город автоматически. Я свяжусь с вами для подтверждения.</p>
       <a href="tel:+79821038579" class="contact__tel">8 982 103-85-79</a>
       <p class="contact__hours">Коркино / Челябинск · Пн–Сб · 10:00 – 20:00</p>
     </div>
-
-    <form class="cform booking-complex-form" id="cform" novalidate>
-      <!-- Выбор города -->
+    <form class="cform" id="cform" novalidate>
       <label>Город приема
         <select class="city-select" id="cCity" required>
           <option value="">— Выберите город —</option>
@@ -404,25 +237,16 @@
           <option value="perm">Пермь (выезд)</option>
         </select>
       </label>
-
-      <!-- Выбор услуги -->
       <label>Процедура<select id="cService" required></select></label>
-
-      <!-- Блок выбора даты и времени -->
       <div class="slot-picker">
         <h4>Выберите дату и время</h4>
-        <input type="date" class="date-select" id="cDate" required />
-        
-        <div class="slots-grid" id="slotsGrid">
-          <!-- Слоты генерируются JS -->
-        </div>
-        <input type="hidden" id="cTime" required />
-        <p style="font-size: 0.8rem; color: var(--dim); margin-top: 0.5rem;" id="slotStatus">Сначала выберите дату</p>
+        <input type="date" class="date-select" id="cDate" required/>
+        <div class="slots-grid" id="slotsGrid"></div>
+        <input type="hidden" id="cTime" required/>
+        <p style="font-size:.8rem;color:var(--dim);margin-top:.5rem" id="slotStatus">Сначала выберите дату</p>
       </div>
-
       <label>Имя<input type="text" id="cName" placeholder="Как к вам обращаться" required/></label>
       <label>Телефон<input type="tel" id="cPhone" placeholder="+7 (___) ___-__-__" required/></label>
-      
       <label>Комментарий<textarea id="cNote" rows="2" placeholder="Пожелания, вопросы (необязательно)"></textarea></label>
       <label class="agree"><input type="checkbox" id="cAgree" required/><span>Согласен(на) на обработку персональных данных и ознакомлен(а), что имеются противопоказания, необходима консультация специалиста.</span></label>
       <button type="submit" class="btn btn--gold btn--full">Отправить заявку</button>
@@ -443,153 +267,75 @@
 <div class="toast" id="toast" hidden></div>
 
 <script src="../services.js"></script>
+<script src="gallery.js"></script>
 <script src="js/app.js"></script>
 
-<!-- СКРИПТ ДЛЯ ФОРМЫ ЗАПИСИ (ГОРОДА + СЛОТЫ) -->
 <script>
-  (function(){
-    const TIMES = ["10:00","11:30","13:00","14:30","16:00","17:30","19:00"];
-    const slotsGrid = document.getElementById('slotsGrid');
-    const dateInput = document.getElementById('cDate');
-    const timeInput = document.getElementById('cTime');
-    const slotStatus = document.getElementById('slotStatus');
-
-    // Установка минимальной даты (завтра)
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.min = tomorrow.toISOString().split('T')[0];
-    dateInput.value = tomorrow.toISOString().split('T')[0];
-
-    function renderSlots(isoDate) {
-      slotsGrid.innerHTML = '';
-      if(!isoDate) {
-        slotStatus.textContent = "Сначала выберите дату";
-        return;
-      }
-      
-      // Генерация слотов (имитация занятости через хеш даты)
-      let hash = 0;
-      for(let i=0; i<isoDate.length; i++) hash = ((hash << 5) - hash) + isoDate.charCodeAt(i);
-      
-      TIMES.forEach((t, index) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'slot-btn';
-        btn.textContent = t;
-        
-        // Имитация: каждый 3-й слот занят
-        const isBusy = (hash + index) % 3 === 0;
-        
-        if(isBusy) {
-          btn.classList.add('disabled');
-          btn.disabled = true;
-        } else {
-          btn.addEventListener('click', () => {
-            document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            timeInput.value = t;
-            slotStatus.textContent = `Выбрано: ${new Date(isoDate).toLocaleDateString('ru-RU')} в ${t}`;
-            slotStatus.style.color = 'var(--gold)';
-          });
-        }
-        slotsGrid.appendChild(btn);
+(function(){
+  const TIMES=["10:00","11:30","13:00","14:30","16:00","17:30","19:00"];
+  const grid=document.getElementById('slotsGrid');
+  const date=document.getElementById('cDate');
+  const time=document.getElementById('cTime');
+  const status=document.getElementById('slotStatus');
+  const tm=new Date();tm.setDate(tm.getDate()+1);
+  date.min=tm.toISOString().split('T')[0];
+  date.value=tm.toISOString().split('T')[0];
+  function render(iso){
+    grid.innerHTML='';
+    if(!iso){status.textContent="Сначала выберите дату";return;}
+    let h=0;for(let i=0;i<iso.length;i++)h=((h<<5)-h)+iso.charCodeAt(i);
+    TIMES.forEach((t,i)=>{
+      const b=document.createElement('button');
+      b.type='button';b.className='slot-btn';b.textContent=t;
+      if((h+i)%3===0){b.classList.add('disabled');b.disabled=true;}
+      else b.addEventListener('click',()=>{
+        grid.querySelectorAll('.slot-btn').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');time.value=t;
+        status.textContent=`Выбрано: ${new Date(iso).toLocaleDateString('ru-RU')} в ${t}`;
+        status.style.color='var(--gold)';
       });
-    }
-
-    dateInput.addEventListener('change', (e) => renderSlots(e.target.value));
-    // Рендер при загрузке
-    renderSlots(dateInput.value);
-
-    // Обработка отправки формы записи
-    document.getElementById('cform').addEventListener('submit', function(e){
-      e.preventDefault();
-      const city = document.getElementById('cCity').value;
-      const time = timeInput.value;
-      
-      if(!city) return alert('Пожалуйста, выберите город приема');
-      if(!time) return alert('Пожалуйста, выберите время из сетки слотов');
-      
-      alert(`✅ Заявка принята!\n\nГород: ${city}\nДата: ${dateInput.value}\nВремя: ${time}\n\nВ демо-режиме данные не отправляются на сервер.`);
-      this.reset();
-      renderSlots(dateInput.value);
-      slotStatus.textContent = "Сначала выберите дату";
-      slotStatus.style.color = 'var(--dim)';
+      grid.appendChild(b);
     });
-  })();
+  }
+  date.addEventListener('change',e=>render(e.target.value));
+  render(date.value);
+  document.getElementById('cform').addEventListener('submit',function(e){
+    e.preventDefault();
+    const city=document.getElementById('cCity').value;
+    if(!city)return alert('Пожалуйста, выберите город приема');
+    if(!time.value)return alert('Пожалуйста, выберите время из сетки слотов');
+    alert(`✅ Заявка принята!\n\nГород: ${city}\nДата: ${date.value}\nВремя: ${time.value}\n\nВ демо данные не отправляются на сервер.`);
+    this.reset();render(date.value);
+    status.textContent="Сначала выберите дату";status.style.color='var(--dim)';
+  });
+})();
 </script>
 
-<!-- СКРИПТ ДЛЯ ОТЗЫВОВ -->
 <script>
-  (function(){
-    const form = document.getElementById('reviewForm');
-    const list = document.getElementById('reviewsList');
-    const STORAGE_KEY = 'osh_reviews_demo';
-
-    // Загрузка сохраненных отзывов при старте
-    function loadReviews() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        saved.forEach(r => addReviewToDOM(r.name, r.city, r.text, false));
-      } catch(e) {}
-    }
-
-    // Функция добавления отзыва в DOM
-    function addReviewToDOM(name, city, text, prepend = false) {
-      const card = document.createElement('div');
-      card.className = 'review-card';
-      
-      const date = new Date().toLocaleDateString('ru-RU', {day:'numeric', month:'long'});
-      
-      card.innerHTML = `
-        <p class="review-text">«${escapeHtml(text)}»</p>
-        <div class="review-author">— ${escapeHtml(name)}, ${escapeHtml(city)} · ${date}</div>
-      `;
-      
-      if(prepend && list.firstChild) {
-        list.insertBefore(card, list.firstChild);
-      } else {
-        list.appendChild(card);
-      }
-    }
-
-    // Экранирование HTML для безопасности
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-
-    // Обработка отправки формы
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      
-      const name = document.getElementById('rName').value.trim();
-      const city = document.getElementById('rCity').value.trim();
-      const text = document.getElementById('rText').value.trim();
-      
-      if(!name || !city || !text) return;
-
-      // Добавляем в интерфейс сверху
-      addReviewToDOM(name, city, text, true);
-      
-      // Сохраняем в localStorage
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        saved.unshift({name, city, text, date: new Date().toISOString()});
-        // Храним максимум 20 последних отзывов
-        if(saved.length > 20) saved.pop(); 
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-      } catch(e) {}
-
-      // Очищаем форму и показываем уведомление
-      form.reset();
-      alert('✅ Спасибо за ваш отзыв! Он успешно добавлен.');
-      
-      // Плавная прокрутка к новому отзыву
-      list.scrollIntoView({behavior: 'smooth', block: 'start'});
-    });
-
-    // Инициализация при загрузке
-    loadReviews();
-  })();
+(function(){
+  const form=document.getElementById('reviewForm');
+  const list=document.getElementById('reviewsList');
+  const KEY='osh_reviews_demo';
+  function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function add(name,city,text,prepend){
+    const card=document.createElement('div');card.className='review-card';
+    const d=new Date().toLocaleDateString('ru-RU',{day:'numeric',month:'long'});
+    card.innerHTML=`<p class="review-text">«${esc(text)}»</p><div class="review-author">— ${esc(name)}, ${esc(city)} · ${d}</div>`;
+    if(prepend&&list.firstChild)list.insertBefore(card,list.firstChild);else list.appendChild(card);
+  }
+  try{(JSON.parse(localStorage.getItem(KEY))||[]).forEach(r=>add(r.name,r.city,r.text,false));}catch(e){}
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    const n=document.getElementById('rName').value.trim();
+    const c=document.getElementById('rCity').value.trim();
+    const t=document.getElementById('rText').value.trim();
+    if(!n||!c||!t)return;
+    add(n,c,t,true);
+    try{const s=JSON.parse(localStorage.getItem(KEY))||[];s.unshift({name:n,city:c,text:t,date:new Date().toISOString()});if(s.length>20)s.pop();localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}
+    form.reset();alert('✅ Спасибо за ваш отзыв! Он добавлен.');
+    list.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+})();
 </script>
 
 </body>
