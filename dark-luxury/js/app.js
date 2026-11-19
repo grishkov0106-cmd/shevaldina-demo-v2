@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const yrSpan = document.getElementById('yr');
   if (yrSpan) yrSpan.textContent = new Date().getFullYear();
 
-  // --- 3. РЕНДЕР ПРАЙСА С БЕЙДЖАМИ ГОРОДОВ ---
+  // --- 3. РЕНДЕР ПРАЙСА С БЕЙДЖАМИ ГОРОДОВ И ПРИМЕЧАНИЯМИ ---
   renderPriceList();
 
   // --- 4. ФИЛЬТРЫ И ПОИСК ПРАЙСА ---
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Рендерит список услуг по категориям, добавляя бейджи доступных городов.
+ * Рендерит список услуг по категориям.
  */
 function renderPriceList() {
   const container = document.getElementById('pricelist');
@@ -39,12 +39,11 @@ function renderPriceList() {
   container.innerHTML = '';
 
   window.CATEGORIES.forEach(cat => {
-    if (cat.id === 'all') return; // Пропускаем "Все направления" для группировки
+    if (cat.id === 'all') return; 
 
     const servicesInCat = window.SERVICES.filter(s => s.cat === cat.id);
     if (servicesInCat.length === 0) return;
 
-    // Группируем услуги этой категории
     const groupEl = document.createElement('div');
     groupEl.className = 'pl-group';
     groupEl.dataset.category = cat.id;
@@ -74,11 +73,10 @@ function renderPriceList() {
           c === "all" ? "Все города" : (window.CITY_NAMES[c] || c)
         ).join(", ");
         
-        // Если услуга доступна везде, можно сократить до "Все города", 
-        // или оставить как есть. Оставим детально для ясности.
         citiesHtml = `<small class="service-cities">${cityNames}</small>`;
       }
 
+      // Формируем примечание (note) - здесь выводится инфо про онлайн/медобразование
       let noteHtml = '';
       if (service.note) {
         noteHtml = `<small class="service-note">${service.note}</small>`;
@@ -106,36 +104,29 @@ function renderPriceList() {
       const serviceData = this.getAttribute('data-service');
       const [catId, serviceName] = serviceData.split('|');
       
-      // Находим полный объект услуги
       const fullService = window.SERVICES.find(s => s.cat === catId && s.name === serviceName);
       
       if (fullService) {
-        // Переключаемся на вкладку записи
         document.querySelector('a[href="#contact"]').click();
         
-        // Заполняем форму
         setTimeout(() => {
           const citySelect = document.getElementById('cCity');
           const serviceSelect = document.getElementById('cService');
           
-          // Если услуга доступна не везде, подсказываем город
           if (fullService.cities.includes("all")) {
              citySelect.value = ""; 
           } else if (fullService.cities.length > 0) {
              citySelect.value = fullService.cities[0];
           }
           
-          // Обновляем список услуг для выбранного города
           updateServicesByCity(citySelect.value);
           
-          // Выбираем нужную услугу в селекте
           Array.from(serviceSelect.options).forEach(opt => {
             if (opt.value.includes(serviceName)) {
               opt.selected = true;
             }
           });
           
-          // Скроллим к полю имени
           document.getElementById('cName').focus();
         }, 300);
       }
@@ -153,7 +144,6 @@ function setupFiltersAndSearch() {
 
   if (!filtersContainer) return;
 
-  // Создаем кнопки фильтров
   window.CATEGORIES.forEach(cat => {
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -170,7 +160,6 @@ function setupFiltersAndSearch() {
     filtersContainer.appendChild(btn);
   });
 
-  // Поиск
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
       const activeFilter = document.querySelector('.filt.on')?.dataset.filter || 'all';
@@ -195,8 +184,6 @@ function applyFilter(categoryId, searchTerm) {
 
     group.querySelectorAll('.pl-row').forEach(row => {
       const nameEl = row.querySelector('.pl-row__name');
-      // Ищем текст только в названии услуги, игнорируя города/примечания если нужно, 
-      // но лучше искать во всем блоке имени
       const textContent = nameEl ? nameEl.textContent.toLowerCase() : '';
       
       const matchesSearch = !term || textContent.includes(term);
@@ -226,12 +213,10 @@ function setupBookingForm() {
   
   if (!citySelect || !serviceSelect) return;
 
-  // Слушатель изменения города
   citySelect.addEventListener('change', function() {
     updateServicesByCity(this.value);
   });
 
-  // Инициализация (если город уже выбран или пуст)
   updateServicesByCity(citySelect.value);
 }
 
@@ -239,25 +224,17 @@ function updateServicesByCity(selectedCity) {
   const serviceSelect = document.getElementById('cService');
   if (!serviceSelect) return;
   
-  // Сохраняем текущее значение, если оно еще существует в новом списке
   const currentValue = serviceSelect.value;
-  
-  // Очищаем текущий список
   serviceSelect.innerHTML = '<option value="">— Выберите услугу —</option>';
   
-  // Фильтруем услуги из глобального массива SERVICES
   window.SERVICES.forEach(service => {
     let isAvailable = false;
     
-    // Проверяем доступность по городу
     if (selectedCity === "") {
-      // Если город не выбран, показываем все активные услуги
       isAvailable = true; 
     } else if (service.cities.includes("all")) {
-      // Услуга доступна во всех городах
       isAvailable = true;
     } else if (service.cities.includes(selectedCity)) {
-      // Услуга доступна конкретно в этом городе
       isAvailable = true;
     }
     
@@ -265,7 +242,6 @@ function updateServicesByCity(selectedCity) {
       const option = document.createElement('option');
       option.value = `${service.cat}|${service.name}`;
       
-      // Формируем текст опции: Название услуги (Цена)
       let text = `${service.name} — ${service.price} ₽`;
       if (service.unit) text += ` (${service.unit})`;
       
@@ -274,7 +250,6 @@ function updateServicesByCity(selectedCity) {
     }
   });
 
-  // Пытаемся восстановить выбор, если он был валиден для нового города
   if (currentValue && Array.from(serviceSelect.options).some(o => o.value === currentValue)) {
     serviceSelect.value = currentValue;
   }
