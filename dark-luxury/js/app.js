@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function cityName(c){return c==='all'?'Все города':(window.CITY_NAMES[c]||c);}
+// Заголовок для галереи: из GALLERY_TITLES, иначе название направления, иначе id.
+function galleryTitle(id){
+  if(window.GALLERY_TITLES&&window.GALLERY_TITLES[id])return window.GALLERY_TITLES[id];
+  const c=(window.CATEGORIES||[]).find(x=>x.id===id);
+  return c?c.label:id;
+}
 
 function setupBurger(){
   const burger=document.getElementById('burger');
@@ -138,10 +144,11 @@ async function renderResultsGallery(){
     const photos=(data[c.id]||[]).slice(0,5);
     if(!photos.length)return;
     rendered++;
+    const title=galleryTitle(c.id); // <-- заголовок по словам Ольги
     const block=document.createElement('div');
     block.className='res-cat';
-    const grid=photos.map(p=>`<figure class="res-photo"><img src="${esc(p.src)}" alt="${esc(c.label)} — до и после" loading="lazy"/><figcaption>${esc(p.caption)}</figcaption></figure>`).join('');
-    block.innerHTML=`<h4 class="res-cat__title">${esc(c.label)}</h4><div class="res-grid">${grid}</div><a class="res-vk" href="${esc(window.VK_ALBUM||'#')}" target="_blank" rel="noopener">Смотреть все работы в ВК →</a>`;
+    const grid=photos.map(p=>`<figure class="res-photo"><img src="${esc(p.src)}" alt="${esc(title)} — до и после" loading="lazy"/><figcaption>${esc(p.caption)}</figcaption></figure>`).join('');
+    block.innerHTML=`<h4 class="res-cat__title">${esc(title)}</h4><div class="res-grid">${grid}</div><a class="res-vk" href="${esc(window.VK_ALBUM||'#')}" target="_blank" rel="noopener">Смотреть все работы в ВК →</a>`;
     wrap.appendChild(block);
   });
   if(!rendered){
