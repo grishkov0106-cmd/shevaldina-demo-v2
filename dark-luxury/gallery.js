@@ -4,7 +4,11 @@
 // по схеме имени:   {id-категории}-{номер}.jpg
 // номер 1,2,3,4,5 — БЕЗ пропусков (если положишь 1 и 3, то 3 не засчитается).
 // Расширения .jpg / .png / .webp — код сам подберёт существующее.
-// Подпись под фото = название категории (берётся из services.js автоматически).
+//
+// ЗАГОЛОВОК блока и ПОДПИСЬ под фото берутся из GALLERY_TITLES ниже.
+// Если id категории там нет — подставится общее название направления из прайса.
+// Чтобы переименовать заголовок или добавить новую процедуру с фото —
+// правь ТОЛЬКО словарь GALLERY_TITLES, остальной код не трогай.
 //
 // Соответствие id категории -> имя файла:
 //   smas         -> smas-1.jpg
@@ -32,6 +36,24 @@ window.GALLERY_DIR = "before-after";
 window.GALLERY_EXTS = ["jpg", "png", "webp"];
 window.GALLERY_MAX = 5;
 
+// Заголовки блоков галереи + подписи под кадрами (по словам Ольги).
+// Ключ = id категории из services.js. Значение = как назвать в «Результатах».
+window.GALLERY_TITLES = {
+  "lips":        "Губы",
+  "body":        "Липоредукция подбородка",
+  "injection":   "Липолитик",
+  "body-device": "Липосоникс",
+  "smas":        "SMAS-лифтинг"
+};
+
+// Какое имя показать для категории: сначала из GALLERY_TITLES,
+// иначе общее название направления из CATEGORIES, иначе сам id.
+function galleryTitle(id) {
+  if (window.GALLERY_TITLES && window.GALLERY_TITLES[id]) return window.GALLERY_TITLES[id];
+  const c = (window.CATEGORIES || []).find((x) => x.id === id);
+  return c ? c.label : id;
+}
+
 // Проверяет по одному, существует ли файл, и собирает найденные.
 async function detectCategoryPhotos(catId, baseUrl, label) {
   const out = [];
@@ -53,11 +75,8 @@ async function detectCategoryPhotos(catId, baseUrl, label) {
 // Возвращает Promise<объект>: { catId: [ {src, caption}, ... ] }
 window.getGalleryData = async function (baseUrl, catIds) {
   const map = {};
-  const cats = window.CATEGORIES || [];
   await Promise.all(catIds.map(async (id) => {
-    const c = cats.find((x) => x.id === id);
-    const label = c ? c.label : id;
-    map[id] = await detectCategoryPhotos(id, baseUrl, label);
+    map[id] = await detectCategoryPhotos(id, baseUrl, galleryTitle(id));
   }));
   return map;
 };
