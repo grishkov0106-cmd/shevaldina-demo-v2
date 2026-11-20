@@ -13,11 +13,11 @@
 // Соответствие id категории -> имя файла:
 //   smas         -> smas-1.jpg
 //   lips         -> lips-1.jpg
-//   body         -> body-1.jpg          (липоредукция подбородка / моделирование)
+//   body         -> body-1.jpg          (моделирование тела / липоредукция)
 //   injection    -> injection-1.jpg     (липолитик и прочие инъекции)
 //   body-device  -> body-device-1.jpg   (липосоникс / LPG / EMS)
 //   face-device  -> face-device-1.jpg   (RF / Indiba / карбоновый пилинг)
-//   contour      -> contour-1.jpg
+//   contour      -> contour-1.jpg       (точка стройности / контурная пластика)
 //   botox        -> botox-1.jpg
 //   care         -> care-1.jpg
 //   peeling      -> peeling-1.jpg
@@ -40,9 +40,10 @@ window.GALLERY_MAX = 5;
 // Ключ = id категории из services.js. Значение = как назвать в «Результатах».
 window.GALLERY_TITLES = {
   "lips":        "Губы",
-  "body":        "Липоредукция подбородка",
+  "body":        "Моделирование тела",       // ИЗМЕНЕНО: было "Липоредукция подбородка"
   "injection":   "Липолитик",
-  "body-device": "Липосоникс",
+  "body-device": "Липосоникс",               // ДОБАВЛЕНО: отдельный блок липосоникса
+  "contour":     "Точка стройности",         // ДОБАВЛЕНО: новая процедура
   "smas":        "SMAS-лифтинг"
 };
 
