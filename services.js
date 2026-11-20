@@ -1,5 +1,5 @@
 // Единый источник данных для сайта Ольги Шевалдиной
-// Города привязаны к КАЖДОЙ услуге (по уточнениям Ольги из голосового)
+// С привязкой к городам и ссылками на страницы "Подробнее"
 
 window.SERVICES = [
   // ===== SMAS-ЛИФТИНГ (Коркино, Челябинск) =====
@@ -80,15 +80,12 @@ window.SERVICES = [
   // ===== БОТУЛИНОТЕРАПИЯ (Все города) =====
   {cat:"botox", catName:"Ботулинотерапия", name:"Ботулинотерапия (за единицу)", price:"от 250 / ед.", note:"REN tox 250 ед. · Релатокс 350 · Лантокс 300 ед.", cities:["all"]},
 
-  // ===== АППАРАТНЫЕ ДЛЯ ЛИЦА =====
-  // По голосовому Ольги: омоложение/купероз/антиакне/RF/Indiba = ТОЛЬКО Коркино.
-  // Карбоновый пилинг не назван -> оставлен К+Ч (НА ПОДТВЕРЖДЕНИЕ).
-  // Игольчатый RF отнесён к RF = только Коркино (НА ПОДТВЕРЖДЕНИЕ).
+  // ===== АППАРАТНЫЕ ДЛЯ ЛИЦА (Только Коркино по уточнению Ольги) =====
   {cat:"face-device", catName:"Аппаратные для лица", name:"Фотоомоложение лица", price:"3 000", unit:"лицо", cities:["korkino"]},
   {cat:"face-device", catName:"Аппаратные для лица", name:"Антикупероз", price:"600", unit:"вспышка", cities:["korkino"]},
   {cat:"face-device", catName:"Аппаратные для лица", name:"Антиакне", price:"3 000", unit:"лицо", cities:["korkino"]},
-  {cat:"face-device", catName:"Аппаратные для лица", name:"Карбоновый пилинг", price:"1 500", unit:"сеанс", cities:["korkino","chelyabinsk"]},
-  {cat:"face-device", catName:"Аппаратные для лица", name:"Карбоновый пилинг (курс)", price:"5 000", unit:"5 сеансов", cities:["korkino","chelyabinsk"]},
+  {cat:"face-device", catName:"Аппаратные для лица", name:"Карбоновый пилинг", price:"1 500", unit:"сеанс", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"face-device", catName:"Аппаратные для лица", name:"Карбоновый пилинг (курс)", price:"5 000", unit:"5 сеансов", cities:["korkino","chelyabinsk"]}, // На подтверждение
   {cat:"face-device", catName:"Аппаратные для лица", name:"RF-лифтинг", price:"1 000", unit:"лицо", cities:["korkino"]},
   {cat:"face-device", catName:"Аппаратные для лица", name:"RF-лифтинг", price:"1 500", unit:"лицо + шея", cities:["korkino"]},
   {cat:"face-device", catName:"Аппаратные для лица", name:"Indiba", price:"1 000", unit:"лицо", cities:["korkino"]},
@@ -115,10 +112,7 @@ window.SERVICES = [
   {cat:"elos", catName:"ЭЛОС-эпиляция", name:"Комплекс: подмышки + бикини + ноги полностью", price:"3 600", note:"комплекс", cities:["korkino"]},
   {cat:"elos", catName:"ЭЛОС-эпиляция", name:"Комплекс: подмышки + бикини + руки + ноги полностью", price:"4 100", note:"комплекс", cities:["korkino"]},
 
-  // ===== АППАРАТНЫЕ ДЛЯ ТЕЛА =====
-  // По голосовому: LPG и Indiba(тело) = ТОЛЬКО Коркино; вибрационный = К+Ч.
-  // Комплексы с LPG/Indiba в составе = только Коркино.
-  // Липосоникс, игольчатый RF(тело), RF(зона), EMS не названы -> К+Ч (НА ПОДТВЕРЖДЕНИЕ).
+  // ===== АППАРАТНЫЕ ДЛЯ ТЕЛА (LPG/Indiba - только Коркино, остальное К+Ч) =====
   {cat:"body-device", catName:"Аппаратные для тела", name:"LPG-массаж", price:"1 000", unit:"1 сеанс", cities:["korkino"]},
   {cat:"body-device", catName:"Аппаратные для тела", name:"LPG-массаж (курс)", price:"8 500", unit:"10 сеансов", cities:["korkino"]},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Костюм для LPG", price:"500", unit:"аренда", cities:["korkino"]},
@@ -127,22 +121,22 @@ window.SERVICES = [
   {cat:"body-device", catName:"Аппаратные для тела", name:"Вибрационный массаж тела", price:"1 000", unit:"1 сеанс", cities:["korkino","chelyabinsk"]},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Вибрационный массаж (зона)", price:"600", unit:"зона", cities:["korkino","chelyabinsk"]},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Вибрационный массаж (курс)", price:"4 000", unit:"5 сеансов", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс", price:"6 000", unit:"раз в месяц", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — живот и бока", price:"10 000", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — руки", price:"5 000", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — валики над коленями", price:"3 000", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — подбородок", price:"2 500", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Игольчатый RF-лифтинг (тело)", price:"10 000", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"RF-лифтинг (зона)", price:"1 500", unit:"1 сеанс", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"RF-лифтинг (зона, курс)", price:"5 000", unit:"5 сеансов", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"EMS-тренировка", price:"1 500", unit:"1 зона", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент: 5 EMS", price:"7 500", note:"абонемент", cities:["korkino","chelyabinsk"]},
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс", price:"6 000", unit:"раз в месяц", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — живот и бока", price:"10 000", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — руки", price:"5 000", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — валики над коленями", price:"3 000", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Липосоникс — подбородок", price:"2 500", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Игольчатый RF-лифтинг (тело)", price:"10 000", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"RF-лифтинг (зона)", price:"1 500", unit:"1 сеанс", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"RF-лифтинг (зона, курс)", price:"5 000", unit:"5 сеансов", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"EMS-тренировка", price:"1 500", unit:"1 зона", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент: 5 EMS", price:"7 500", note:"абонемент", cities:["korkino","chelyabinsk"]}, // На подтверждение
   {cat:"body-device", catName:"Аппаратные для тела", name:"Комплекс: 10 LPG + 10 EMS", price:"17 000", note:"абонемент", cities:["korkino"]},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Комплекс: 10 LPG + 5 Indiba 2/1", price:"16 000", note:"абонемент", cities:["korkino"]},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Комплекс: 10 LPG + 5 EMS", price:"13 500", note:"абонемент", cities:["korkino"]},
   {cat:"body-device", catName:"Аппаратные для тела", name:"Комплекс: 10 вибрационный + 10 Indiba 2/1", price:"23 000", note:"абонемент", cities:["korkino"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент только EMS — 10 сессий", price:"9 000", note:"абонемент", cities:["korkino","chelyabinsk"]},
-  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент только EMS — 20 сессий", price:"17 000", note:"абонемент", cities:["korkino","chelyabinsk"]},
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент только EMS — 10 сессий", price:"9 000", note:"абонемент", cities:["korkino","chelyabinsk"]}, // На подтверждение
+  {cat:"body-device", catName:"Аппаратные для тела", name:"Абонемент только EMS — 20 сессий", price:"17 000", note:"абонемент", cities:["korkino","chelyabinsk"]}, // На подтверждение
 
   // ===== ГИРУДОТЕРАПИЯ (Коркино, Челябинск) =====
   {cat:"hirudo", catName:"Гирудотерапия", name:"Оздоровление медицинскими пиявками", price:"2 000", unit:"сеанс", cities:["korkino","chelyabinsk"]},
@@ -151,7 +145,7 @@ window.SERVICES = [
   {cat:"body", catName:"Коррекция тела", name:"Липоредукция подбородка", price:"30 000", cities:["all"]},
   {cat:"body", catName:"Коррекция тела", name:"Моделирование тела", price:"Индивидуально", note:"Подбирается персонально под ваши цели", cities:["all"]},
 
-  // ===== ОБУЧЕНИЕ (Очно К/Ч или Онлайн) =====
+  // ===== ОБУЧЕНИЕ (Все города, с пометкой Онлайн/Очно) =====
   {cat:"edu", catName:"Обучение", name:"Курс «Гирудотерапия»", price:"15 000", note:"Свидетельство гос. образца. Очно (К/Ч) или Онлайн.", cities:["all"]},
   {cat:"edu", catName:"Обучение", name:"Мастер аппаратной коррекции тела", price:"Индивидуально", note:"Сертификат + практика. Возможно очно (К/Ч) или Онлайн.", cities:["all"]},
   {cat:"edu", catName:"Обучение", name:"Косметик-эстетист (лицо / тело)", price:"Индивидуально", note:"Сертификат + практика. Возможно очно (К/Ч) или Онлайн.", cities:["all"]},
