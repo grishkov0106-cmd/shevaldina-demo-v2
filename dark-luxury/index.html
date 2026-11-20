@@ -135,49 +135,52 @@
       <p class="sec-sub">Официальные документы для вашей карьеры. Очно в Коркино и Челябинске, а также онлайн — по вашему желанию.</p>
     </div>
     
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem">
+    <!-- grid-auto-rows: 1fr выравнивает высоту всех карточек -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;grid-auto-rows:1fr">
       
       <!-- 1. ГИРУДОТЕРАПИЯ -->
-      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px">
+      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px;display:flex;flex-direction:column">
         <span style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em">Гирудотерапия</span>
         <h3 style="font-family:var(--serif);font-size:1.3rem;margin:.5rem 0">Курс «Гирудотерапия»</h3>
-        <p style="color:var(--muted);font-size:.9rem">Оздоровление медицинскими пиявками. Теория и практика.</p>
-        <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center">
+        <p style="color:var(--muted);font-size:.9rem;flex-grow:1">Оздоровление медицинскими пиявками. Теория и практика.</p>
+        <!-- mt-auto прижимает этот блок к самому низу карточки -->
+        <div style="margin-top:auto;padding-top:1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem">
           <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold)">15 000 ₽</div>
-          <span class="edu-badge">СЕРТИФИКАТ · Онлайн</span>
+          <span class="edu-badge" style="white-space:nowrap;font-size:.65rem;padding:.3rem .6rem">СЕРТИФИКАТ · Онлайн</span>
         </div>
       </article>
 
       <!-- 2. МАСТЕР АППАРАТНОЙ КОРРЕКЦИИ ТЕЛА -->
-      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px">
+      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px;display:flex;flex-direction:column">
         <span style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em">Аппаратная косметология</span>
         <h3 style="font-family:var(--serif);font-size:1.3rem;margin:.5rem 0">Мастер аппаратной коррекции тела</h3>
-        <p style="color:var(--muted);font-size:.9rem">Курс по работе с телом. Очно или онлайн.</p>
-        <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center">
+        <p style="color:var(--muted);font-size:.9rem;flex-grow:1">Курс по работе с телом. Очно или онлайн.</p>
+        <div style="margin-top:auto;padding-top:1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem">
           <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold)">Индивидуально</div>
-          <span class="edu-badge">ГОС. ОБРАЗЕЦ · СЕРТИФИКАТ</span>
+          <!-- white-space:nowrap запрещает перенос на вторую строку -->
+          <span class="edu-badge" style="white-space:nowrap;font-size:.65rem;padding:.3rem .6rem">ГОС. ОБРАЗЕЦ · СЕРТИФИКАТ</span>
         </div>
       </article>
 
       <!-- 3. КОСМЕТИК-ЭСТЕТИСТ -->
-      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px">
+      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px;display:flex;flex-direction:column">
         <span style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em">Эстетистика</span>
         <h3 style="font-family:var(--serif);font-size:1.3rem;margin:.5rem 0">Косметик-эстетист (лицо / тело)</h3>
-        <p style="color:var(--muted);font-size:.9rem">Базовый курс для начинающих специалистов.</p>
-        <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center">
+        <p style="color:var(--muted);font-size:.9rem;flex-grow:1">Базовый курс для начинающих специалистов.</p>
+        <div style="margin-top:auto;padding-top:1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem">
           <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold)">Индивидуально</div>
-          <span class="edu-badge">ГОС. ОБРАЗЕЦ · СЕРТИФИКАТ</span>
+          <span class="edu-badge" style="white-space:nowrap;font-size:.65rem;padding:.3rem .6rem">ГОС. ОБРАЗЕЦ · СЕРТИФИКАТ</span>
         </div>
       </article>
 
       <!-- 4. ПОВЫШЕНИЕ КВАЛИФИКАЦИИ -->
-      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px">
+      <article style="background:var(--bg);border:1px solid var(--hair);padding:1.5rem;border-radius:12px;display:flex;flex-direction:column">
         <span style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em">Для специалистов</span>
         <h3 style="font-family:var(--serif);font-size:1.3rem;margin:.5rem 0">Аттестация и повышение квалификации</h3>
-        <p style="color:var(--muted);font-size:.9rem">Выдача документов действующим мастерам. Возможно онлайн.</p>
-        <div style="margin-top:1rem;display:flex;justify-content:space-between;align-items:center">
+        <p style="color:var(--muted);font-size:.9rem;flex-grow:1">Выдача документов действующим мастерам. Возможно онлайн.</p>
+        <div style="margin-top:auto;padding-top:1rem;display:flex;justify-content:space-between;align-items:center;gap:.8rem">
           <div style="font-family:var(--serif);font-size:1.2rem;color:var(--gold)">Индивидуально</div>
-          <span class="edu-badge">ГОС. ОБРАЗЕЦ</span>
+          <span class="edu-badge" style="white-space:nowrap;font-size:.65rem;padding:.3rem .6rem">ГОС. ОБРАЗЕЦ</span>
         </div>
       </article>
 
