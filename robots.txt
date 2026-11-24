@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /dark-luxury/
+Disallow: /dark-luxury/js/
+Disallow: /soft-editorial/
+
+Sitemap: https://grishkov0106-cmd.github.io/shevaldina-demo-v2/sitemap.xml
