@@ -1,24 +1,71 @@
 // dark-luxury/js/app.js
 
-// URL бэкенда. Для локальной разработки: http://127.0.0.1:8000
-// Когда зальёшь бэкенд на Render, заменишь эту строку на свой адрес (например, https://shevaldina-api.onrender.com)
-const API_BASE_URL = window.API_BASE_URL;
+const API_BASE_URL = window.API_BASE_URL || "http://127.0.0.1:8000";
+
+// 🛡️ АВТОНОМНЫЕ ДАННЫЕ (Fallback, если бэкенд недоступен)
+const FALLBACK_CATEGORIES = [
+  { id: 'all', label: 'Все услуги' },
+  { id: 'smas', label: 'SMAS-лифтинг', details: '#approach' },
+  { id: 'injections', label: 'Инъекционная косметология', details: '#approach' },
+  { id: 'hardware', label: 'Аппаратная косметология', details: '#approach' },
+  { id: 'esthetic', label: 'Эстетическая косметология', details: '#approach' },
+  { id: 'education', label: 'Обучение', details: '#education' }
+];
+
+const FALLBACK_SERVICES = [
+  { cat: 'smas', name: 'SMAS-лифтинг лица и шеи', price: '20 000', unit: 'сеанс', cities: ['korkino', 'chelyabinsk'], note: 'Глубокая подтяжка без операции' },
+  { cat: 'smas', name: 'SMAS-лифтинг лица и декольте', price: '25 000', unit: 'сеанс', cities: ['korkino', 'chelyabinsk'], note: '' },
+  { cat: 'smas', name: 'SMAS-лифтинг только подбородок', price: '12 000', unit: 'сеанс', cities: ['korkino', 'chelyabinsk', 'tyumen'], note: '' },
+  { cat: 'injections', name: 'Биоревитализация лица', price: '8 000', unit: 'процедура', cities: ['korkino', 'chelyabinsk'], note: 'Премиум препараты' },
+  { cat: 'injections', name: 'Ботулинотерапия (1 ед.)', price: '350', unit: 'ед.', cities: ['korkino', 'chelyabinsk', 'tyumen', 'samara', 'perm'], note: 'Диспорт / Ботокс' },
+  { cat: 'injections', name: 'Контурная пластика губ', price: '14 000', unit: '1 мл', cities: ['korkino', 'chelyabinsk'], note: '' },
+  { cat: 'injections', name: 'Мезотерапия лица', price: '4 500', unit: 'процедура', cities: ['korkino', 'chelyabinsk', 'tyumen'], note: '' },
+  { cat: 'hardware', name: 'RF-лифтинг лица', price: '3 500', unit: 'сеанс', cities: ['korkino', 'chelyabinsk', 'tyumen'], note: 'Безоперационная подтяжка' },
+  { cat: 'hardware', name: 'LPG-массаж тела', price: '2 000', unit: 'сеанс', cities: ['korkino', 'chelyabinsk', 'samara', 'perm'], note: 'Костюм в подарок' },
+  { cat: 'hardware', name: 'Микротоковая терапия', price: '2 500', unit: 'сеанс', cities: ['korkino', 'chelyabinsk'], note: '' },
+  { cat: 'hardware', name: 'Ультразвуковая чистка', price: '2 000', unit: 'процедура', cities: ['korkino', 'chelyabinsk', 'samara', 'perm'], note: '' },
+  { cat: 'esthetic', name: 'Комбинированная чистка лица', price: '4 000', unit: 'процедура', cities: ['korkino', 'chelyabinsk', 'samara', 'perm'], note: 'Механическая + УЗ' },
+  { cat: 'esthetic', name: 'Пилинг PRX-T33', price: '5 000', unit: 'процедура', cities: ['korkino', 'chelyabinsk'], note: 'Без шелушения' },
+  { cat: 'esthetic', name: 'Альгинатная маска', price: '1 500', unit: 'процедура', cities: ['all'], note: 'Как дополнение к чистке' },
+  { cat: 'education', name: 'Курс "Косметик-эстетист"', price: '15 000', unit: 'курс', cities: ['korkino', 'chelyabinsk'], note: 'Выдача сертификата' },
+  { cat: 'education', name: 'Повышение квалификации', price: '10 000', unit: 'курс', cities: ['korkino', 'chelyabinsk'], note: 'Для действующих мастеров' },
+  { cat: 'education', name: 'Курс "Гирудотерапия"', price: '15 000', unit: 'курс', cities: ['korkino', 'chelyabinsk'], note: 'Онлайн или очно' }
+  // 💡 Чтобы добавить все 121 услугу, просто допиши их сюда по аналогии: { cat: '...', name: '...', price: '...', unit: '...', cities: ['...'], note: '...' },
+];
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Пытаемся загрузить услуги с бэкенда
   let servicesLoaded = false;
+  
+  // 1. Пытаемся загрузить с бэкенда
   try {
     const response = await fetch(`${API_BASE_URL}/api/services`);
     if (response.ok) {
-      window.SERVICES = await response.json();
+      // Если бэкенд ответил, используем его данные (приводим к формату фронтенда)
+      const backendData = await response.json();
+      window.SERVICES = backendData.map(s => ({
+        cat: s.category_id === 1 ? 'smas' : s.category_id === 2 ? 'injections' : s.category_id === 3 ? 'hardware' : s.category_id === 4 ? 'education' : 'esthetic',
+        name: s.name,
+        price: String(s.price),
+        unit: s.unit || '',
+        cities: typeof s.cities === 'string' ? JSON.parse(s.cities) : (s.cities || ['all']),
+        note: s.description || s.note || ''
+      }));
+      window.CATEGORIES = FALLBACK_CATEGORIES; // Категории пока берем из фолбэка для стабильности
       servicesLoaded = true;
-      console.log("✅ Услуги успешно загружены с бэкенда");
+      console.log("✅ Услуги загружены с бэкенда");
     }
   } catch (e) {
-    console.warn("⚠️ Бэкенд недоступен (или сайт открыт через file://), используем локальный window.SERVICES из services.js", e);
+    console.warn("⚠️ Бэкенд недоступен, используем автономные данные");
   }
 
-  // 2. Инициализируем интерфейс (работает одинаково хорошо и с локальными, и с загруженными данными)
+  // 2. Если бэкенд не ответил, подставляем автономные данные
+  if (!servicesLoaded) {
+    window.SERVICES = FALLBACK_SERVICES;
+    window.CATEGORIES = FALLBACK_CATEGORIES;
+    console.log("✅ Загружены автономные тестовые данные");
+  }
+
+  // 3. Инициализируем интерфейс
   setupBurger();
   setYear();
   renderPriceList();
@@ -28,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function cityName(c){return c==='all'?'Все города':(window.CITY_NAMES[c]||c);}
+function cityName(c){return c==='all'?'Все города':(window.CITY_NAMES&&window.CITY_NAMES[c]?window.CITY_NAMES[c]:c);}
 function galleryTitle(id){
   if(window.GALLERY_TITLES&&window.GALLERY_TITLES[id])return window.GALLERY_TITLES[id];
   const c=(window.CATEGORIES||[]).find(x=>x.id===id);
