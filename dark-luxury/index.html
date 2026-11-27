@@ -306,24 +306,38 @@
   date.min=tm.toISOString().split('T')[0];
   date.value=tm.toISOString().split('T')[0];
 
+  function formatISO(iso){
+    const p=iso.split('-');
+    return `${p[2]}.${p[1]}.${p[0]}`;
+  }
+  function todayISO(){
+    const n=new Date();
+    return n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+  }
+  function nowHHMM(){
+    const n=new Date();
+    return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+  }
+
   async function render(iso){
     grid.innerHTML='';
     if(!iso){status.textContent="Сначала выберите дату";return;}
     let busy=[];
     try{
-      const r=await fetch(`${API_BASE_URL}/api/bookings/availability?date=${iso}`);
+      const r=await fetch(`${API_BASE_URL}/api/bookings/availability?date=${iso}`,{cache:'no-store'});
       if(r.ok){const d=await r.json();busy=(d.busy||[]).map(x=>x.time);}
-    }catch(e){/* бэкенд недоступен — слоты остаются по хешу */}
-    let h=0;for(let i=0;i<iso.length;i++)h=((h<<5)-h)+iso.charCodeAt(i);
+    }catch(e){/* бэкенд недоступен — слоты остаются доступными */}
+    const isToday = iso === todayISO();
+    const now = isToday ? nowHHMM() : '';
     TIMES.forEach((t,i)=>{
       const b=document.createElement('button');
       b.type='button';b.className='slot-btn';b.textContent=t;
-      const taken=busy.includes(t)||(!busy.length&&(h+i)%3===0);
+      const taken = busy.includes(t) || (isToday && t <= now);
       if(taken){b.classList.add('disabled');b.disabled=true;}
       else b.addEventListener('click',()=>{
         grid.querySelectorAll('.slot-btn').forEach(x=>x.classList.remove('active'));
         b.classList.add('active');time.value=t;
-        status.textContent=`Выбрано: ${new Date(iso).toLocaleDateString('ru-RU')} в ${t}`;
+        status.textContent=`Выбрано: ${formatISO(iso)} в ${t}`;
         status.style.color='var(--gold)';
       });
       grid.appendChild(b);
